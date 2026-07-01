@@ -1,0 +1,2025 @@
+Created At: 2026-06-14T06:32:36Z
+Completed At: 2026-06-14T06:32:36Z
+Task: 7e20230d-6b37-4018-8f6f-7a1233641d37/task-10463
+Status: DONE
+Log: C:\Users\ACER\.gemini\antigravity\brain\7e20230d-6b37-4018-8f6f-7a1233641d37\.system_generated\tasks\task-10463.log
+Log output:
+<truncated 41 lines>
+   updateCashierUI();
+      });
+  
+>     btnBayar.addEventListener('click', () => {
+          if (!keranjangPilihan || keranjangPilihan.length === 0 || currentCheckoutIndex >= keranjangPilihan.length) {
+              showFeedback('Belum ada barang atau semua barang sudah dibayar!', false);
+      }
+  
+>     window.addEventListener('resize', checkOrientation);
+      checkOrientation();
+  
+  
+      if(btnForceLandscape) {
+>         btnForceLandscape.addEventListener('click', forceLandscapeMode);
+      }
+  
+      }
+  
+>     btnSelesaiBelanja.addEventListener('click', () => {
+          Swal.fire({
+              title: 'Selesai Belanja?',
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+  
+      if (btnTutupEvaluasi) {
+>         btnTutupEvaluasi.addEventListener('click', () => {
+              Swal.fire({
+                  title: 'Keluar Laporan?',
+
+
+
+Last progress: 4s ago
+
+
+REMINDER: Do not call this tool again to poll or wait for updates. You will be automatically notified when the task completes or a message arrives. If you need a bounded wait, use the `schedule` tool -- it waits silently in the background and suppresses its notification if you are woken by another event.
+---
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-14T06:32:32Z sender=7e20230d-6b37-4018-8f6f-7a1233641d37/task-10463 priority=MESSAGE_PRIORITY_HIGH content=Task id "7e20230d-6b37-4018-8f6f-7a1233641d37/task-10463" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+> document.addEventListener('DOMContentLoaded', async () => {
+      // Override suara global dengan versi khusus kuis
+      if (window.audios) {
+         4. MODAL RAK TOKO
+         ========================================= */
+>     btnBukaRak.addEventListener('click', () => { modalRak.style.display = 'flex'; });
+>     btnTutupRak.addEventListener('click', () => { modalRak.style.display = 'none'; });
+  
+      function renderShopTabs() {
+          const tabs = shopTabsContainer.querySelectorAll('.shop-tab');
+          tabs.forEach(tab => {
+>             tab.addEventListener('click', (e) => {
+                  tabs.forEach(t => t.classList.remove('active'));
+                  e.target.classList.add('active');
+              const qtyDisplay = card.querySelector('.qty-display');
+  
+>             btnMin.addEventListener('click', (e) => {
+                  e.stopPropagation(); // Mencegah klik menembus ke card
+                  if(item.jumlahPilihan > 0) {
+              });
+  
+>             btnPlus.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  item.jumlahPilihan++;
+  
+      if (btnMulaiBermain) {
+>         btnMulaiBermain.addEventListener('click', () => {
+              // Ambil semua barang yang jumlahPilihannya > 0
+              keranjangPilihan = allItems.filter(item => item.jumlahPilihan > 0).map(item => ({...item, jumlah: 
+item.jumlahPilihan}));
+      const uangButtons = document.querySelectorAll('.uang-btn');
+      uangButtons.forEach(btn => {
+>         btn.addEventListener('click', (e) => {
+              if (!keranjangPilihan || keranjangPilihan.length === 0 || currentCheckoutIndex >= 
+keranjangPilihan.length) {
+                  showFeedback('Kamu belum memilih barang apapun untuk dibayar!', false);
+      });
+  
+>     btnResetUang.addEventListener('click', () => {
+          uangTerkumpul = 0;
+          updateCashierUI();
+      });
+  
+>     btnBayar.addEventListener('click', () => {
+          if (!keranjangPilihan || keranjangPilihan.length === 0 || currentCheckoutIndex >= keranjangPilihan.length) {
+              showFeedback('Belum ada barang atau semua barang sudah dibayar!', false);
+      }
+  
+>     window.addEventListener('resize', checkOrientation);
+      checkOrientation();
+  
+  
+      if(btnForceLandscape) {
+>         btnForceLandscape.addEventListener('click', forceLandscapeMode);
+      }
+  
+      }
+  
+>     btnSelesaiBelanja.addEventListener('click', () => {
+          Swal.fire({
+              title: 'Selesai Belanja?',
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+  
+      if (btnTutupEvaluasi) {
+>         btnTutupEvaluasi.addEventListener('click', () => {
+              Swal.fire({
+                  title: 'Keluar Laporan?',
+
+
+
+
+Log: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-10463.log
+</SYSTEM_MESSAGE>
+---
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-14T07:45:53Z sender=7e20230d-6b37-4018-8f6f-7a1233641d37/task-10584 priority=MESSAGE_PRIORITY_HIGH content=Task id "7e20230d-6b37-4018-8f6f-7a1233641d37/task-10584" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+      const evalSaldoAwal = document.getElementById('evalSaldoAwal');
+      const evalSisaSaldo = document.getElementById('evalSisaSaldo');
+      const evalTabelBody = document.getElementById('evalTabelBody');
+      const teksSisaUang = document.getElementById('teksSisaUang');
+      const inputPerencanaan = document.getElementById('inputPerencanaan');
+>     const btnSimpanEvaluasi = document.getElementById('btnSimpanEvaluasi');
+>     const btnTutupEvaluasi = document.getElementById('btnTutupEvaluasi');
+  
+      // SFX
+      const sfxKoin = new Audio('../klik kuis.mp3');
+      const sfxBenar = new Audio('../sfx berhasil bayar.mp3'); // Menggunakan sfx baru khusus berhasil bayar
+      const sfxSalah = new Audio('../salah.mp3');
+      const sfxSelesai = new Audio('../u_o8xh7gwsrj-cute_happy_victory-476376.mp3');
+  
+      /* =========================================
+         2. FUNGSI UTILITAS
+         ========================================= */
+      function formatRupiah(number) {
+          return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 
+}).format(number);
+      }
+  
+      function showFeedback(message, isSuccess) {
+          feedbackToast.textContent = message;
+          feedbackToast.style.background = isSuccess ? '#27AE60' : '#E74C3C';
+          feedbackToast.style.display = 'block';
+          
+          if (isSuccess) sfxBenar.play().catch(e=>{});
+                  akhiriGame();
+              }
+          });
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+>         btnSimpanEvaluasi.disabled = true;
+>         btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  await db.collection('perencanaan').add({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp()
+                  });
+              }
+  
+                  title: 'Gagal Menyimpan',
+                  text: 'Gagal menyimpan data. Pastikan koneksi internetmu aktif!',
+                  icon: 'error',
+                  confirmButtonColor: '#E74C3C'
+              });
+>             btnSimpanEvaluasi.disabled = false;
+>             btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+          }
+      });
+  
+>     if (btnTutupEvaluasi) {
+>         btnTutupEvaluasi.addEventListener('click', () => {
+              Swal.fire({
+                  title: 'Keluar Laporan?',
+                  text: 'Yakin ingin keluar dari laporan? Rencana sisa uangmu mungkin belum tersimpan.',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#E74C3C',
+                  cancelButtonColor: '#95A5A6',
+                  confirmButtonText: 'Ya, Keluar',
+                  cancelButtonText: 'Batal'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = 'index.html';
+                  }
+              });
+          });
+      }
+  
+      // Panggil inisialisasi
+      initData();
+  });
+
+
+
+
+Log: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-10584.log
+</SYSTEM_MESSAGE>
+---
+Created At: 2026-06-14T07:54:44Z
+Completed At: 2026-06-14T07:54:45Z
+
+				The command completed successfully.
+				Output:
+				
+          });
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  await db.collection('perencanaan').add({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp()
+                  });
+              }
+  
+              // Integrasi dengan Dashboard Guru (Sistem Tab)
+              if (auth && typeof saveStudentResult === 'function') {
+
+
+
+
+---
+Created At: 2026-06-14T08:03:21Z
+Completed At: 2026-06-14T08:03:22Z
+
+				The command completed successfully.
+				Output:
+				
+          });
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  await db.collection('perencanaan').add({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp()
+                  });
+              }
+  
+              // Integrasi dengan Dashboard Guru (Sistem Tab)
+              if (auth && typeof saveStudentResult === 'function') {
+                  const parsedAuth = JSON.parse(auth);
+                  const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+                  
+                  // Hitung total belanja
+                  const totalBelanja = daftarBelanjaan.reduce((sum, item) => sum + item.harga, 0);
+                  const jumlahBarang = daftarBelanjaan.length;
+                  
+                  // Generate HTML rincian barang beserta foto (Dikabungkan jika barang sama)
+                  const groupedItems = {};
+                  daftarBelanjaan.forEach(item => {
+
+
+
+
+---
+Created At: 2026-06-14T08:03:33Z
+Completed At: 2026-06-14T08:03:34Z
+
+				The command completed successfully.
+				Output:
+				
+                  e.preventDefault(); 
+                  // Mainkan suara peringatan (opsional)
+                  if (typeof playClickSound === 'function') playClickSound();
+                  
+                  // Tampilkan Peringatan
+>                 Swal.fire({
+                      icon: 'warning',
+                      title: 'Pergi ke Rak Toko Dulu!',
+                      text: 'Kamu harus mengeklik tombol "Rak Toko" dan memilih barang sebelum bisa membayar di kasir 
+atau melakukan hal lain.',
+                      confirmButtonColor: '#F1C40F',
+                      confirmButtonText: 'dY>' Oke!'
+                  });
+  
+                  // Animasikan tombol Rak Toko agar membesar dan fokus
+                  btnBukaRakNode.style.transition = 'all 0.3s ease';
+                  btnBukaRakNode.style.transform = 'scale(1.5)';
+          btnMulaiBermain.addEventListener('click', () => {
+              // Ambil semua barang yang jumlahPilihannya > 0
+              keranjangPilihan = allItems.filter(item => item.jumlahPilihan > 0).map(item => ({...item, jumlah: 
+item.jumlahPilihan}));
+              
+              if (keranjangPilihan.length === 0) {
+>                 Swal.fire({
+                      title: 'Keranjang Kosong!',
+                      text: 'Pilih minimal 1 barang terlebih dahulu!',
+                      icon: 'warning',
+                      confirmButtonColor: '#F39C12'
+                  });
+                  return;
+              }
+  
+              currentCheckoutIndex = 0; // Mulai dari barang pertama
+              modalRak.style.display = 'none'; // Tutup rak
+              });
+          }
+      }
+  
+      btnSelesaiBelanja.addEventListener('click', () => {
+>         Swal.fire({
+              title: 'Selesai Belanja?',
+              text: 'Apakah kamu yakin ingin menyudahi belanja sekarang?',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: '#27AE60',
+              cancelButtonColor: '#E74C3C',
+              confirmButtonText: 'Ya, Selesai!',
+              cancelButtonText: 'Lanjut Belanja'
+          }).then((result) => {
+              if (result.isConfirmed) {
+      });
+  
+      btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+>             Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+                      skorAkhir: `Rp ${uangSaku}`,
+                      catatan: catatanFormatted
+                  });
+              }
+  
+>             Swal.fire({
+                  title: 'Luar Biasa!',
+                  text: 'Laporan keuanganmu telah tersimpan.',
+                  icon: 'success',
+                  confirmButtonColor: '#27AE60'
+              }).then(() => {
+                  // Arahkan kembali ke portal
+                  window.location.href = 'index.html';
+              });
+  
+          } catch (error) {
+              console.error('Gagal menyimpan evaluasi:', error);
+>             Swal.fire({
+                  title: 'Gagal Menyimpan',
+                  text: 'Gagal menyimpan data. Pastikan koneksi internetmu aktif!',
+                  icon: 'error',
+                  confirmButtonColor: '#E74C3C'
+              });
+              btnSimpanEvaluasi.disabled = false;
+              btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+          }
+      });
+  
+      if (btnTutupEvaluasi) {
+          btnTutupEvaluasi.addEventListener('click', () => {
+>             Swal.fire({
+                  title: 'Keluar Laporan?',
+                  text: 'Yakin ingin keluar dari laporan? Rencana sisa uangmu mungkin belum tersimpan.',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#E74C3C',
+                  cancelButtonColor: '#95A5A6',
+                  confirmButtonText: 'Ya, Keluar',
+                  cancelButtonText: 'Batal'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+
+
+
+
+---
+Created At: 2026-06-14T08:03:39Z
+Completed At: 2026-06-14T08:03:40Z
+
+				The command completed successfully.
+				Output:
+				
+  
+          // Pantau persetujuan guru via Firestore
+          if (typeof db !== 'undefined' && docId) {
+>             db.collection('perencanaan').doc(docId).onSnapshot((doc) => {
+                  if (doc.exists) {
+                      const data = doc.data();
+                      if (data.izinLanjut === true) {
+                          statusIzinIcon.innerHTML = '�o.';
+                          statusIzinText.innerHTML = '<strong style="color: #27AE60;">Guru telah memberikan 
+izin!</strong> Kamu bekerja dengan hebat.';
+                          btnLanjutMisi.disabled = false;
+                          btnLanjutMisi.classList.add('btn-lanjut-aktif');
+                          btnLanjutMisi.textContent = 'Lanjut ke Peta dYs?';
+                      }
+                  }
+      const evalSisaSaldo = document.getElementById('evalSisaSaldo');
+      const evalTabelBody = document.getElementById('evalTabelBody');
+      const teksSisaUang = document.getElementById('teksSisaUang');
+>     const inputPerencanaan = document.getElementById('inputPerencanaan');
+      const btnSimpanEvaluasi = document.getElementById('btnSimpanEvaluasi');
+      const btnTutupEvaluasi = document.getElementById('btnTutupEvaluasi');
+  
+      // SFX
+      const sfxKoin = new Audio('../klik kuis.mp3');
+      const sfxBenar = new Audio('../sfx berhasil bayar.mp3'); // Menggunakan sfx baru khusus berhasil bayar
+      const sfxSalah = new Audio('../salah.mp3');
+      const sfxSelesai = new Audio('../u_o8xh7gwsrj-cute_happy_victory-476376.mp3');
+  
+      /* =========================================
+      });
+  
+      btnSimpanEvaluasi.addEventListener('click', async () => {
+>         const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+  
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+>                 await db.collection('perencanaan').add({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp()
+                  });
+              }
+  
+              // Integrasi dengan Dashboard Guru (Sistem Tab)
+
+
+
+
+---
+Created At: 2026-06-14T08:04:03Z
+Completed At: 2026-06-14T08:04:04Z
+
+				The command completed successfully.
+				Output:
+				<truncated 15 lines>
+!e.target.closest('.modal-rak')) {
+                  e.stopPropagation(); 
+                  e.preventDefault(); 
+                  // Mainkan suara peringatan (opsional)
+                  if (typeof playClickSound === 'function') playClickSound();
+                  
+                  // Tampilkan Peringatan
+>                 Swal.fire({
+                      icon: 'warning',
+                      title: 'Pergi ke Rak Toko Dulu!',
+                      text: 'Kamu harus mengeklik tombol "Rak Toko" dan memilih barang sebelum bisa membayar di kasir 
+atau melakukan hal lain.',
+                      confirmButtonColor: '#F1C40F',
+                      confirmButtonText: 'dY>' Oke!'
+                  });
+  
+                  // Animasikan tombol Rak Toko agar membesar dan fokus
+                  btnBukaRakNode.style.transition = 'all 0.3s ease';
+                  btnBukaRakNode.style.transform = 'scale(1.5)';
+                  btnBukaRakNode.style.boxShadow = '0 0 20px #E74C3C, 0 0 40px #F1C40F';
+                  btnBukaRakNode.style.zIndex = '9999';
+                  btnBukaRakNode.style.position = 'relative';
+  
+                  // Kembalikan ke ukuran normal setelah 1.5 detik
+                  // Mainkan SFX Klik biasa
+                  const sfxClone = sfxKoin.cloneNode();
+                  sfxClone.volume = 0.5;
+                  sfxClone.play().catch(err => {});
+              });
+  
+              rakBarangGrid.appendChild(card);
+          });
+      }
+  
+      const btnMulaiBermain = document.getElementById('btnMulaiBermain');
+      const barangAtasKasir = document.getElementById('barangAtasKasir');
+      let currentCheckoutIndex = 0; // Menyimpan index barang yang sedang dikasir
+  
+      if (btnMulaiBermain) {
+          btnMulaiBermain.addEventListener('click', () => {
+              // Ambil semua barang yang jumlahPilihannya > 0
+              keranjangPilihan = allItems.filter(item => item.jumlahPilihan > 0).map(item => ({...item, jumlah: 
+item.jumlahPilihan}));
+              
+              if (keranjangPilihan.length === 0) {
+>                 Swal.fire({
+                      title: 'Keranjang Kosong!',
+                      text: 'Pilih minimal 1 barang terlebih dahulu!',
+                      icon: 'warning',
+                      confirmButtonColor: '#F39C12'
+                  });
+                  return;
+              }
+  
+              currentCheckoutIndex = 0; // Mulai dari barang pertama
+              modalRak.style.display = 'none'; // Tutup rak
+  
+              // TRANSISI KE FASE BAYAR (KASIR)
+              if (panelPilihBarang && panelDompet) {
+                  panelPilihBarang.style.display = 'none';
+                  panelDompet.style.display = 'inline-block';
+  
+          // Isi Tabel Daftar Belanjaan
+          evalTabelBody.innerHTML = '';
+          if (daftarBelanjaan.length === 0) {
+              evalTabelBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:20px; 
+color:#7F8C8D;">Kamu tidak membeli apa-apa.</td></tr>`;
+          } else {
+              daftarBelanjaan.forEach(item => {
+                  const tr = document.createElement('tr');
+                  tr.className = 'evaluasi-row';
+                  tr.innerHTML = `
+                      <td><img src="${item.foto}" class="evaluasi-item-img"></td>
+                      <td class="evaluasi-item-name">${item.nama}</td>
+                      <td class="evaluasi-item-price">${formatRupiah(item.harga)}</td>
+                  `;
+                  evalTabelBody.appendChild(tr);
+              });
+          }
+      }
+  
+      btnSelesaiBelanja.addEventListener('click', () => {
+>         Swal.fire({
+              title: 'Selesai Belanja?',
+              text: 'Apakah kamu yakin ingin menyudahi belanja sekarang?',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: '#27AE60',
+              cancelButtonColor: '#E74C3C',
+              confirmButtonText: 'Ya, Selesai!',
+              cancelButtonText: 'Lanjut Belanja'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  akhiriGame();
+              }
+          });
+      });
+  
+      btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+>             Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                          <hr style="margin:12px 0; border:0; border-top:2px dashed #bdc3c7;">
+                          <strong>Modal Awal:</strong> Rp ${saldoAwal.toLocaleString('id-ID')}<br>
+                          <strong>Sisa Saldo Akhir:</strong> <span style="color:${uangSaku >= 0 ? '#27AE60' : 
+'#E74C3C'}; font-weight:900; font-size:1.3rem;">Rp ${uangSaku.toLocaleString('id-ID')}</span><br>
+                          <strong>Status:</strong> <span style="font-weight:bold; background:${uangSaku >= 0 ? 
+'#d5f5e3' : '#fadbd8'}; padding:2px 8px; border-radius:6px; color:${uangSaku >= 0 ? '#1e8449' : 
+'#c0392b'};">${status}</span><br>
+                          <div style="background:#e8f4f8; padding:12px 15px; border-radius:8px; margin-top:12px; 
+border-left:5px solid #3498DB; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+                              <strong style="color:#2980B9; font-size:1.15rem;">dY'� Rencana Penggunaan Sisa 
+Uang:</strong><br>
+                              <i style="color:#34495E; font-size:1.1rem;">"${rencana}"</i>
+                          </div>
+                      </div>
+                  `;
+  
+                  await saveStudentResult({
+                      nama: parsedAuth.nama,
+                      kelas: parsedAuth.kelas,
+                      aktivitas: "Mini-Game Belanja",
+                      skorAkhir: `Rp ${uangSaku}`,
+                      catatan: catatanFormatted
+                  });
+              }
+  
+>             Swal.fire({
+                  title: 'Luar Biasa!',
+                  text: 'Laporan keuanganmu telah tersimpan.',
+                  icon: 'success',
+                  confirmButtonColor: '#27AE60'
+              }).then(() => {
+                  // Arahkan kembali ke portal
+                  window.location.href = 'index.html';
+              });
+  
+          } catch (error) {
+              console.error('Gagal menyimpan evaluasi:', error);
+>             Swal.fire({
+                  title: 'Gagal Menyimpan',
+                  text: 'Gagal menyimpan data. Pastikan koneksi internetmu aktif!',
+                  icon: 'error',
+                  confirmButtonColor: '#E74C3C'
+              });
+              btnSimpanEvaluasi.disabled = false;
+              btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+          }
+      });
+  
+      if (btnTutupEvaluasi) {
+          btnTutupEvaluasi.addEventListener('click', () => {
+>             Swal.fire({
+                  title: 'Keluar Laporan?',
+                  text: 'Yakin ingin keluar dari laporan? Rencana sisa uangmu mungkin belum tersimpan.',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#E74C3C',
+                  cancelButtonColor: '#95A5A6',
+                  confirmButtonText: 'Ya, Keluar',
+                  cancelButtonText: 'Batal'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = 'index.html';
+                  }
+              });
+          });
+      }
+
+
+
+
+---
+Created At: 2026-06-14T08:07:16Z
+Completed At: 2026-06-14T08:07:18Z
+
+				The command completed successfully.
+				Output:
+				
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              let docRefId = null;
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  const docRef = await db.collection('perencanaan').add({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp(),
+                      izinLanjut: false
+                  });
+                  docRefId = docRef.id;
+              }
+  
+              // Integrasi dengan Dashboard Guru (Sistem Tab)
+              if (auth && typeof saveStudentResult === 'function') {
+                  const parsedAuth = JSON.parse(auth);
+                  const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+
+
+
+
+---
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-14T08:07:37Z sender=7e20230d-6b37-4018-8f6f-7a1233641d37/task-10853 priority=MESSAGE_PRIORITY_HIGH content=Task id "7e20230d-6b37-4018-8f6f-7a1233641d37/task-10853" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+    const btnSimpanEvaluasi = document.getElementById('btnSimpanEvaluasi');
+    btnSimpanEvaluasi.addEventListener('click', async () => {
+        btnSimpanEvaluasi.disabled = true;
+        btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+            btnSimpanEvaluasi.disabled = false;
+            btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+            btnSimpanEvaluasi.disabled = false;
+            btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+
+
+
+
+Log: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-10853.log
+</SYSTEM_MESSAGE>
+---
+Created At: 2026-06-14T08:09:07Z
+Tool is running as a background task with task id: 7e20230d-6b37-4018-8f6f-7a1233641d37/task-10902
+Task Description: Get-Content "d:\New folder (3)\student\js\kuis-belanja.js" | Select-String -Pattern "btnSimpanEvaluasi.addEventListener" -Context 0,70
+Task logs are available at: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-10902.log
+---
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-14T08:09:09Z sender=7e20230d-6b37-4018-8f6f-7a1233641d37/task-10902 priority=MESSAGE_PRIORITY_HIGH content=Task id "7e20230d-6b37-4018-8f6f-7a1233641d37/task-10902" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              let docRefId = null;
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  const docRef = await db.collection('perencanaan').add({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp(),
+                      izinLanjut: false
+                  });
+                  docRefId = docRef.id;
+              }
+  
+              // Integrasi dengan Dashboard Guru (Sistem Tab)
+              if (auth && typeof saveStudentResult === 'function') {
+                  const parsedAuth = JSON.parse(auth);
+                  const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+                  
+                  // Hitung total belanja
+                  const totalBelanja = daftarBelanjaan.reduce((sum, item) => sum + item.harga, 0);
+                  const jumlahBarang = daftarBelanjaan.length;
+                  
+                  // Generate HTML rincian barang beserta foto (Dikabungkan jika barang sama)
+                  const groupedItems = {};
+                  daftarBelanjaan.forEach(item => {
+                      if (!groupedItems[item.nama]) {
+                          groupedItems[item.nama] = { ...item, qty: 1, subtotal: item.harga };
+                      } else {
+                          groupedItems[item.nama].qty += 1;
+                          groupedItems[item.nama].subtotal += item.harga;
+                      }
+                  });
+  
+                  let rincianBarangHTML = '<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; 
+margin-bottom:15px;">';
+                  if (jumlahBarang === 0) {
+                      rincianBarangHTML += '<span style="font-size:1.1rem; color:#7F8C8D;"><i>Tidak membeli 
+apa-apa</i></span>';
+                  } else {
+                      Object.values(groupedItems).forEach(item => {
+                          let qtyBadge = item.qty > 1 ? `<div style="position:absolute; top:10px; right:10px; 
+background:#F1C40F; color:#000; font-weight:bold; font-size:1.1rem; padding:5px 12px; border-radius:15px; border:2px 
+solid #D4AC0D; box-shadow:0 2px 5px rgba(0,0,0,0.4); z-index:2;">x${item.qty}</div>` : '';
+                          rincianBarangHTML += `
+                              <div style="background:#fff; border:2px solid #ecf0f1; border-radius:15px; display:flex; 
+flex-direction:column; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); position:relative; width:220px;">
+                                  ${qtyBadge}
+                                  <img src="${item.foto}" style="width:100%; height:150px; object-fit:cover; 
+z-index:1; border-bottom:2px solid #f1f2f6;">
+                                  <div style="padding:15px; line-height:1.4; text-align:left;">
+                                      <div style="font-size:1.3rem; font-weight:900; color:#2C3E50; 
+margin-bottom:8px;">${item.nama}</div>
+                                      <div style="font-size:1.2rem; color:#E74C3C; font-weight:800;">Rp 
+${item.subtotal.toLocaleString('id-ID')}</div>
+                                  </div>
+
+
+
+
+Log: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-10902.log
+</SYSTEM_MESSAGE>
+---
+Created At: 2026-06-14T08:16:31Z
+Completed At: 2026-06-14T08:16:32Z
+
+				The command completed successfully.
+				Output:
+				<truncated 1 lines>
+          if (budgetDisplay) budgetDisplay.textContent = formatted;
+          
+          // Perbarui sisa uang saku di header modal Rak Toko
+          const modalBudgetDisplay = document.getElementById('modalBudgetDisplay');
+          if (modalBudgetDisplay) modalBudgetDisplay.textContent = formatted;
+      }
+  
+      function updateCashierUI() {
+          uangTerkumpulDisplay.textContent = uangTerkumpul;
+      }
+  
+      /* =========================================
+         3. INIT & LOAD DATA
+         ========================================= */
+      async function initData() {
+          try {
+              const savedUangSaku = localStorage.getItem('uangSakuCerita');
+              const savedGender = localStorage.getItem('genderCerita') || 'L';
+              
+              if (savedUangSaku) {
+                  uangSaku = parseInt(savedUangSaku);
+              } else if (typeof getStorySettings === 'function') {
+                  const storySettings = await getStorySettings();
+                  uangSaku = storySettings.uangSakuAwal || 20000;
+              } else {
+                  uangSaku = 20000;
+              }
+              
+              saldoAwal = uangSaku; // Catat saldo awal untuk evaluasi
+              updateWalletUI();
+  
+              // Set gambar karakter pembeli sesuai gender
+              const karakterImg = document.querySelector('.placeholder-character.pembeli img');
+              if (karakterImg) {
+                  if (savedGender === 'P') {
+                      karakterImg.src = 'aset%20student/pembeli%20cewe.png';
+                  } else {
+                      karakterImg.src = 'aset%20student/9.png';
+                  }
+              }
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+>         btnSimpanEvaluasi.disabled = true;
+>         btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              let docRefId = null;
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  const docRef = await db.collection('perencanaan').add({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp(),
+                      izinLanjut: false
+                  });
+                  docRefId = docRef.id;
+              }
+  
+              // Integrasi dengan Dashboard Guru (Sistem Tab)
+              if (auth && typeof saveStudentResult === 'function') {
+                  const parsedAuth = JSON.parse(auth);
+                  const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+                  
+                  // Hitung total belanja
+                  const totalBelanja = daftarBelanjaan.reduce((sum, item) => sum + item.harga, 0);
+                  const jumlahBarang = daftarBelanjaan.length;
+                  
+                  // Generate HTML rincian barang beserta foto (Dikabungkan jika barang sama)
+                  const groupedItems = {};
+                  daftarBelanjaan.forEach(item => {
+                      if (!groupedItems[item.nama]) {
+                          groupedItems[item.nama] = { ...item, qty: 1, subtotal: item.harga };
+                      } else {
+                          groupedItems[item.nama].qty += 1;
+                          groupedItems[item.nama].subtotal += item.harga;
+                      }
+                  });
+  
+                  let rincianBarangHTML = '<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; 
+margin-bottom:15px;">';
+                  if (jumlahBarang === 0) {
+                      rincianBarangHTML += '<span style="font-size:1.1rem; color:#7F8C8D;"><i>Tidak membeli 
+apa-apa</i></span>';
+                  } else {
+                      Object.values(groupedItems).forEach(item => {
+                          let qtyBadge = item.qty > 1 ? `<div style="position:absolute; top:10px; right:10px; 
+background:#F1C40F; color:#000; font-weight:bold; font-size:1.1rem; padding:5px 12px; border-radius:15px; border:2px 
+solid #D4AC0D; box-shadow:0 2px 5px rgba(0,0,0,0.4); z-index:2;">x${item.qty}</div>` : '';
+                          rincianBarangHTML += `
+                              <div style="background:#fff; border:2px solid #ecf0f1; border-radius:15px; display:flex; 
+flex-direction:column; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); position:relative; width:220px;">
+                                  ${qtyBadge}
+                                  <img src="${item.foto}" style="width:100%; height:150px; object-fit:cover; 
+z-index:1; border-bottom:2px solid #f1f2f6;">
+                                  <div style="padding:15px; line-height:1.4; text-align:left;">
+                                      <div style="font-size:1.3rem; font-weight:900; color:#2C3E50; 
+margin-bottom:8px;">${item.nama}</div>
+                                      <div style="font-size:1.2rem; color:#E74C3C; font-weight:800;">Rp 
+${item.subtotal.toLocaleString('id-ID')}</div>
+                                  </div>
+                              </div>
+                          `;
+                      });
+                  }
+                  rincianBarangHTML += '</div>';
+  
+                  // Rangkum catatan lengkap
+                  const catatanFormatted = `
+                      <div style="font-size:1.2rem; line-height:1.5;">
+                          <strong style="font-size:1.3rem; color:#34495E;">dY>' Total Belanja (${jumlahBarang} 
+Barang):</strong> <span style="font-weight:900; color:#2C3E50;">Rp ${totalBelanja.toLocaleString('id-ID')}</span>
+                          ${rincianBarangHTML}
+                          <hr style="margin:12px 0; border:0; border-top:2px dashed #bdc3c7;">
+                          <strong>Modal Awal:</strong> Rp ${saldoAwal.toLocaleString('id-ID')}<br>
+>             btnSimpanEvaluasi.disabled = false;
+>             btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+  
+          } catch (error) {
+              console.error('Gagal menyimpan evaluasi:', error);
+              Swal.fire({
+                  title: 'Gagal Menyimpan',
+                  text: 'Gagal menyimpan data. Pastikan koneksi internetmu aktif!',
+                  icon: 'error',
+                  confirmButtonColor: '#E74C3C'
+              });
+>             btnSimpanEvaluasi.disabled = false;
+>             btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+          }
+      });
+  
+      if (btnTutupEvaluasi) {
+          btnTutupEvaluasi.addEventListener('click', () => {
+              Swal.fire({
+                  title: 'Keluar Laporan?',
+                  text: 'Yakin ingin keluar dari laporan? Rencana sisa uangmu mungkin belum tersimpan.',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#E74C3C',
+                  cancelButtonColor: '#95A5A6',
+                  confirmButtonText: 'Ya, Keluar',
+                  cancelButtonText: 'Batal'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = 'index.html';
+                  }
+              });
+          });
+      }
+  
+      // Panggil inisialisasi
+      initData();
+  });
+
+
+
+
+---
+Created At: 2026-06-14T08:52:06Z
+Completed At: 2026-06-14T08:52:07Z
+
+				The command completed successfully.
+				Output:
+				
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              let docRefId = null;
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  const docRef = await db.collection('perencanaan').add({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp(),
+                      izinLanjut: false
+                  });
+                  docRefId = docRef.id;
+              }
+  
+              // Integrasi dengan Dashboard Guru (Sistem Tab)
+              if (auth && typeof saveStudentResult === 'function') {
+                  const parsedAuth = JSON.parse(auth);
+                  const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+                  
+                  // Hitung total belanja
+                  const totalBelanja = daftarBelanjaan.reduce((sum, item) => sum + item.harga, 0);
+                  const jumlahBarang = daftarBelanjaan.length;
+                  
+                  // Generate HTML rincian barang beserta foto (Dikabungkan jika barang sama)
+                  const groupedItems = {};
+                  daftarBelanjaan.forEach(item => {
+                      if (!groupedItems[item.nama]) {
+                          groupedItems[item.nama] = { ...item, qty: 1, subtotal: item.harga };
+                      } else {
+                          groupedItems[item.nama].qty += 1;
+                          groupedItems[item.nama].subtotal += item.harga;
+                      }
+                  });
+  
+                  let rincianBarangHTML = '<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; 
+margin-bottom:15px;">';
+                  if (jumlahBarang === 0) {
+                      rincianBarangHTML += '<span style="font-size:1.1rem; color:#7F8C8D;"><i>Tidak membeli 
+apa-apa</i></span>';
+                  } else {
+                      Object.values(groupedItems).forEach(item => {
+                          let qtyBadge = item.qty > 1 ? `<div style="position:absolute; top:10px; right:10px; 
+background:#F1C40F; color:#000; font-weight:bold; font-size:1.1rem; padding:5px 12px; border-radius:15px; border:2px 
+solid #D4AC0D; box-shadow:0 2px 5px rgba(0,0,0,0.4); z-index:2;">x${item.qty}</div>` : '';
+                          rincianBarangHTML += `
+                              <div style="background:#fff; border:2px solid #ecf0f1; border-radius:15px; display:flex; 
+flex-direction:column; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); position:relative; width:220px;">
+                                  ${qtyBadge}
+                                  <img src="${item.foto}" style="width:100%; height:150px; object-fit:cover; 
+z-index:1; border-bottom:2px solid #f1f2f6;">
+                                  <div style="padding:15px; line-height:1.4; text-align:left;">
+                                      <div style="font-size:1.3rem; font-weight:900; color:#2C3E50; 
+margin-bottom:8px;">${item.nama}</div>
+                                      <div style="font-size:1.2rem; color:#E74C3C; font-weight:800;">Rp 
+${item.subtotal.toLocaleString('id-ID')}</div>
+                                  </div>
+
+
+
+
+---
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-15T18:13:23Z sender=7e20230d-6b37-4018-8f6f-7a1233641d37/task-11507 priority=MESSAGE_PRIORITY_HIGH content=Task id "7e20230d-6b37-4018-8f6f-7a1233641d37/task-11507" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+                  akhiriGame();
+              }
+          });
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              let docRefId = null;
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  const docRef = await db.collection('perencanaan').add({
+
+
+
+
+Log: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-11507.log
+</SYSTEM_MESSAGE>
+---
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-15T18:26:46Z sender=7e20230d-6b37-4018-8f6f-7a1233641d37/task-11562 priority=MESSAGE_PRIORITY_HIGH content=Task id "7e20230d-6b37-4018-8f6f-7a1233641d37/task-11562" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+              title: 'Selesai Belanja?',
+              text: 'Apakah kamu yakin ingin menyudahi belanja sekarang?',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: '#27AE60',
+              cancelButtonColor: '#E74C3C',
+              confirmButtonText: 'Ya, Selesai!',
+              cancelButtonText: 'Lanjut Belanja'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  akhiriGame();
+              }
+          });
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              let docRefId = null;
+              let savePromises = [];
+  
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  const docRef = db.collection('perencanaan').doc();
+                  docRefId = docRef.id;
+                  
+                  const p1 = docRef.set({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+
+
+
+
+Log: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-11562.log
+</SYSTEM_MESSAGE>
+---
+Created At: 2026-06-15T18:42:06Z
+Completed At: 2026-06-15T18:42:07Z
+
+				The command completed successfully.
+				Output:
+				
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+                  icon: 'info',
+                  confirmButtonColor: '#3498DB'
+              });
+              return;
+          }
+  
+          btnSimpanEvaluasi.disabled = true;
+          btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  userNama = JSON.parse(auth).nama;
+              }
+  
+              let docRefId = null;
+              let savePromises = [];
+  
+              // Simpan ke Firestore
+              if (typeof db !== 'undefined') {
+                  const docRef = db.collection('perencanaan').doc();
+                  docRefId = docRef.id;
+                  
+                  const p1 = docRef.set({
+                      namaSiswa: userNama,
+                      saldoAwal: saldoAwal,
+                      sisaSaldo: uangSaku,
+                      daftarBelanjaan: daftarBelanjaan,
+                      rencanaSisaUang: rencana,
+                      tanggal: firebase.firestore.FieldValue.serverTimestamp(),
+                      izinLanjut: false
+                  });
+                  savePromises.push(p1);
+              }
+  
+              // Integrasi dengan Dashboard Guru (Sistem Tab)
+              if (auth && typeof saveStudentResult === 'function') {
+                  const parsedAuth = JSON.parse(auth);
+                  const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+                  
+                  // Hitung total belanja
+                  const totalBelanja = daftarBelanjaan.reduce((sum, item) => sum + item.harga, 0);
+                  const jumlahBarang = daftarBelanjaan.length;
+                  
+                  // Generate HTML rincian barang beserta foto (Dikabungkan jika barang sama)
+                  const groupedItems = {};
+                  daftarBelanjaan.forEach(item => {
+                      if (!groupedItems[item.nama]) {
+                          groupedItems[item.nama] = { ...item, qty: 1, subtotal: item.harga };
+                      } else {
+                          groupedItems[item.nama].qty += 1;
+                          groupedItems[item.nama].subtotal += item.harga;
+                      }
+                  });
+  
+                  let rincianBarangHTML = '<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; 
+margin-bottom:15px;">';
+                  if (jumlahBarang === 0) {
+                      rincianBarangHTML += '<span style="font-size:1.1rem; color:#7F8C8D;"><i>Tidak membeli 
+apa-apa</i></span>';
+                  } else {
+                      Object.values(groupedItems).forEach(item => {
+                          let qtyBadge = item.qty > 1 ? `<div style="position:absolute; top:10px; right:10px; 
+background:#F1C40F; color:#000; font-weight:bold; font-size:1.1rem; padding:5px 12px; border-radius:15px; border:2px 
+solid #D4AC0D; box-shadow:0 2px 5px rgba(0,0,0,0.4); z-index:2;">x${item.qty}</div>` : '';
+                          rincianBarangHTML += `
+                              <div style="background:#fff; border:2px solid #ecf0f1; border-radius:15px; display:flex; 
+flex-direction:column; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); position:relative; width:220px;">
+                                  ${qtyBadge}
+                                  <img src="${item.foto}" style="width:100%; height:150px; object-fit:cover; 
+z-index:1; border-bottom:2px solid #f1f2f6;">
+                                  <div style="padding:15px; line-height:1.4; text-align:left;">
+                                      <div style="font-size:1.3rem; font-weight:900; color:#2C3E50; 
+margin-bottom:8px;">${item.nama}</div>
+                                      <div style="font-size:1.2rem; color:#E74C3C; font-weight:800;">Rp 
+${item.subtotal.toLocaleString('id-ID')}</div>
+                                  </div>
+                              </div>
+                          `;
+                      });
+                  }
+                  rincianBarangHTML += '</div>';
+  
+                  // Rangkum catatan lengkap
+                  const catatanFormatted = `
+                      <div style="font-size:1.2rem; line-height:1.5;">
+                          <strong style="font-size:1.3rem; color:#34495E;">dY>' Total Belanja (${jumlahBarang} 
+Barang):</strong> <span style="font-weight:900; color:#2C3E50;">Rp ${totalBelanja.toLocaleString('id-ID')}</span>
+                          ${rincianBarangHTML}
+                          <hr style="margin:12px 0; border:0; border-top:2px dashed #bdc3c7;">
+                          <strong>Modal Awal:</strong> Rp ${saldoAwal.toLocaleString('id-ID')}<br>
+                          <strong>Sisa Saldo Akhir:</strong> <span style="color:${uangSaku >= 0 ? '#27AE60' : 
+'#E74C3C'}; font-weight:900; font-size:1.3rem;">Rp ${uangSaku.toLocaleString('id-ID')}</span><br>
+                          <strong>Status:</strong> <span style="font-weight:bold; background:${uangSaku >= 0 ? 
+'#d5f5e3' : '#fadbd8'}; padding:2px 8px; border-radius:6px; color:${uangSaku >= 0 ? '#1e8449' : 
+'#c0392b'};">${status}</span><br>
+                          <div style="background:#e8f4f8; padding:12px 15px; border-radius:8px; margin-top:12px; 
+border-left:5px solid #3498DB; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+                              <strong style="color:#2980B9; font-size:1.15rem;">dY'� Rencana Penggunaan Sisa 
+Uang:</strong><br>
+                              <i style="color:#34495E; font-size:1.1rem;">"${rencana}"</i>
+                          </div>
+                      </div>
+                  `;
+  
+                  const p2 = saveStudentResult({
+                      nama: parsedAuth.nama,
+                      kelas: parsedAuth.kelas,
+                      aktivitas: "Mini-Game Belanja",
+                      skorAkhir: `Rp ${uangSaku}`,
+                      catatan: catatanFormatted
+                  });
+                  savePromises.push(p2);
+              }
+  
+              // Simpan ke Session Storage sebagai backup instan untuk AI Evaluasi
+              sessionStorage.setItem('tempEvaluasiData', JSON.stringify({
+                  saldoAwal: saldoAwal,
+
+
+
+
+---
+Created At: 2026-06-15T18:48:56Z
+Completed At: 2026-06-15T18:48:57Z
+
+				The command completed successfully.
+				Output:
+				
+      const teksSisaUang = document.getElementById('teksSisaUang');
+      const inputPerencanaan = document.getElementById('inputPerencanaan');
+>     const btnSimpanEvaluasi = document.getElementById('btnSimpanEvaluasi');
+      const btnTutupEvaluasi = document.getElementById('btnTutupEvaluasi');
+  
+      // SFX
+      const sfxKoin = new Audio('../klik kuis.mp3');
+      const sfxBenar = new Audio('../sfx berhasil bayar.mp3'); // Menggunakan sfx baru khusus berhasil bayar
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+          }
+  
+>         btnSimpanEvaluasi.disabled = true;
+>         btnSimpanEvaluasi.textContent = 'Menyimpan... �?3';
+  
+          try {
+              let userNama = "Siswa (Tanpa Login)";
+              const auth = sessionStorage.getItem('siswaAuth');
+              if (auth) {
+                  confirmButtonColor: '#E74C3C'
+              });
+>             btnSimpanEvaluasi.disabled = false;
+>             btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+          }
+      });
+  
+      if (btnTutupEvaluasi) {
+          btnTutupEvaluasi.addEventListener('click', () => {
+
+
+
+
+---
+Created At: 2026-06-15T18:50:36Z
+Completed At: 2026-06-15T18:50:37Z
+
+				The command completed successfully.
+				Output:
+				
+    btnSimpanEvaluasi.addEventListener('click', async () => {
+
+
+
+
+---
+Created At: 2026-06-15T18:55:02Z
+Completed At: 2026-06-15T18:55:03Z
+
+				The command completed successfully.
+				Output:
+				
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+              Swal.fire({
+                  title: 'Rencana Belum Diisi!',
+                  text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+
+
+
+
+---
+Created At: 2026-06-15T18:55:08Z
+Completed At: 2026-06-15T18:55:09Z
+
+				The command completed successfully.
+				Output:
+				
+
+Groups   : {0}
+Success  : True
+Name     : 0
+Captures : {0}
+Index    : 30984
+Length   : 34
+Value    : btnSimpanEvaluasi.addEventListener
+
+
+
+
+
+---
+Created At: 2026-06-15T18:55:26Z
+Completed At: 2026-06-15T18:55:26Z
+File Path: `file:///d:/New%20folder%20%283%29/student/js/kuis-belanja-v2.js`
+Total Lines: 934
+Total Bytes: 42775
+Showing lines 719 to 830
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+719:     btnSimpanEvaluasi.addEventListener('click', async () => {
+720:         const rencana = inputPerencanaan.value.trim();
+721:         if (!rencana) {
+722:             Swal.fire({
+723:                 title: 'Rencana Belum Diisi!',
+724:                 text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+725:                 icon: 'info',
+726:                 confirmButtonColor: '#3498DB'
+727:             });
+728:             return;
+729:         }
+730: 
+731:         btnSimpanEvaluasi.disabled = true;
+732:         btnSimpanEvaluasi.textContent = 'Menyimpan... ⏳';
+733: 
+734:         try {
+735:             let userNama = "Siswa (Tanpa Login)";
+736:             const auth = sessionStorage.getItem('siswaAuth');
+737:             if (auth) {
+738:                 userNama = JSON.parse(auth).nama;
+739:             }
+740: 
+741:             let docRefId = null;
+742:             let savePromises = [];
+743: 
+744:             // Simpan ke Firestore
+745:             if (typeof db !== 'undefined') {
+746:                 const docRef = db.collection('perencanaan').doc();
+747:                 docRefId = docRef.id;
+748:                 
+749:                 const p1 = docRef.set({
+750:                     namaSiswa: userNama,
+751:                     saldoAwal: saldoAwal,
+752:                     sisaSaldo: uangSaku,
+753:                     daftarBelanjaan: daftarBelanjaan,
+754:                     rencanaSisaUang: rencana,
+755:                     tanggal: firebase.firestore.FieldValue.serverTimestamp(),
+756:                     izinLanjut: false
+757:                 });
+758:                 savePromises.push(p1);
+759:             }
+760: 
+761:             // Integrasi dengan Dashboard Guru (Sistem Tab)
+762:             if (auth && typeof saveStudentResult === 'function') {
+763:                 const parsedAuth = JSON.parse(auth);
+764:                 const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+765:                 
+766:                 // Hitung total belanja
+767:                 const totalBelanja = daftarBelanjaan.reduce((sum, item) => sum + item.harga, 0);
+768:                 const jumlahBarang = daftarBelanjaan.length;
+769:                 
+770:                 // Generate HTML rincian barang beserta foto (Dikabungkan jika barang sama)
+771:                 const groupedItems = {};
+772:                 daftarBelanjaan.forEach(item => {
+773:                     if (!groupedItems[item.nama]) {
+774:                         groupedItems[item.nama] = { ...item, qty: 1, subtotal: item.harga };
+775:                     } else {
+776:                         groupedItems[item.nama].qty += 1;
+777:                         groupedItems[item.nama].subtotal += item.harga;
+778:                     }
+779:                 });
+780: 
+781:                 let rincianBarangHTML = '<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; margin-bottom:15px;">';
+782:                 if (jumlahBarang === 0) {
+783:                     rincianBarangHTML += '<span style="font-size:1.1rem; color:#7F8C8D;"><i>Tidak membeli apa-apa</i></span>';
+784:                 } else {
+785:                     Object.values(groupedItems).forEach(item => {
+786:                         let qtyBadge = item.qty > 1 ? `<div style="position:absolute; top:10px; right:10px; background:#F1C40F; color:#000; font-weight:bold; font-size:1.1rem; padding:5px 12px; border-radius:15px; border:2px solid #D4AC0D; box-shadow:0 2px 5px rgba(0,0,0,0.4); z-index:2;">x${item.qty}</div>` : '';
+787:                         rincianBarangHTML += `
+788:                             <div style="background:#fff; border:2px solid #ecf0f1; border-radius:15px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); position:relative; width:220px;">
+789:                                 ${qtyBadge}
+790:                                 <img src="${item.foto}" style="width:100%; height:150px; object-fit:cover; z-index:1; border-bottom:2px solid #f1f2f6;">
+791:                                 <div style="padding:15px; line-height:1.4; text-align:left;">
+792:                                     <div style="font-size:1.3rem; font-weight:900; color:#2C3E50; margin-bottom:8px;">${item.nama}</div>
+793:                                     <div style="font-size:1.2rem; color:#E74C3C; font-weight:800;">Rp ${item.subtotal.toLocaleString('id-ID')}</div>
+794:                                 </div>
+795:                             </div>
+796:                         `;
+797:                     });
+798:                 }
+799:                 rincianBarangHTML += '</div>';
+800: 
+801:                 // Rangkum catatan lengkap
+802:                 const catatanFormatted = `
+803:                     <div style="font-size:1.2rem; line-height:1.5;">
+804:                         <strong style="font-size:1.3rem; color:#34495E;">🛒 Total Belanja (${jumlahBarang} Barang):</strong> <span style="font-weight:900; color:#2C3E50;">Rp ${totalBelanja.toLocaleString('id-ID')}</span>
+805:                         ${rincianBarangHTML}
+806:                         <hr style="margin:12px 0; border:0; border-top:2px dashed #bdc3c7;">
+807:                         <strong>Modal Awal:</strong> Rp ${saldoAwal.toLocaleString('id-ID')}<br>
+808:                         <strong>Sisa Saldo Akhir:</strong> <span style="color:${uangSaku >= 0 ? '#27AE60' : '#E74C3C'}; font-weight:900; font-size:1.3rem;">Rp ${uangSaku.toLocaleString('id-ID')}</span><br>
+809:                         <strong>Status:</strong> <span style="font-weight:bold; background:${uangSaku >= 0 ? '#d5f5e3' : '#fadbd8'}; padding:2px 8px; border-radius:6px; color:${uangSaku >= 0 ? '#1e8449' : '#c0392b'};">${status}</span><br>
+810:                         <div style="background:#e8f4f8; padding:12px 15px; border-radius:8px; margin-top:12px; border-left:5px solid #3498DB; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+811:                             <strong style="color:#2980B9; font-size:1.15rem;">💡 Rencana Penggunaan Sisa Uang:</strong><br>
+812:                             <i style="color:#34495E; font-size:1.1rem;">"${rencana}"</i>
+813:                         </div>
+814:                     </div>
+815:                 `;
+816: 
+817:                 const p2 = saveStudentResult({
+818:                     nama: parsedAuth.nama,
+819:                     kelas: parsedAuth.kelas,
+820:                     aktivitas: "Mini-Game Belanja",
+821:                     skorAkhir: `Rp ${uangSaku}`,
+822:                     catatan: catatanFormatted
+823:                 });
+824:                 savePromises.push(p2);
+825:             }
+826: 
+827:             // Simpan ke Session Storage sebagai backup instan untuk AI Evaluasi
+828:             sessionStorage.setItem('tempEvaluasiData', JSON.stringify({
+829:                 saldoAwal: saldoAwal,
+830:                 sisaSaldo: uangSaku,
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+Created At: 2026-06-15T18:56:14Z
+Completed At: 2026-06-15T18:56:27Z
+The following changes were made by the replace_file_content tool to: d:\New folder (3)\student\js\kuis-belanja-v2.js. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -716,7 +716,7 @@
+         });
+     });
+ 
+-    btnSimpanEvaluasi.addEventListener('click', async () => {
++    btnSimpanEvaluasi.addEventListener('click', () => {
+         const rencana = inputPerencanaan.value.trim();
+         if (!rencana) {
+             Swal.fire({
+@@ -727,13 +727,20 @@
+             return;
+         }
+ 
++        // === LANGKAH 1: SIMPAN LOKAL (INSTAN, TIDAK BISA GAGAL) ===
++        const evalData = {
++            saldoAwal: saldoAwal,
++            sisaSaldo: uangSaku,
++            daftarBelanjaan: daftarBelanjaan,
++            rencanaSisaUang: rencana
++        };
++        try {
++            sessionStorage.setItem('tempEvaluasiData', JSON.stringify(evalData));
++            localStorage.setItem('lastEvaluasiData', JSON.stringify(evalData));
++        } catch(e) { /* storage penuh, tidak apa-apa */ }
++
++        // === LANGKAH 2: SEMBUNYIKAN MODAL SEKARANG ===
+         btnSimpanEvaluasi.disabled = true;
+-        btnSimpanEvaluasi.textContent = 'Menyimpan... ⏳';
+-
+-        try {
+-            let userNama = "Siswa (Tanpa Login)";
+-            const auth = sessionStorage.getItem('siswaAuth');
+-            if (auth) {
+                 userNama = JSON.parse(auth).nama;
+             }
+ 
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+You had inaccuracies in your replacement chunks, so you should review the file contents before making further edits. It is important that you get the target content EXACTLY right, otherwise you will make more mistakes.
+
+We did our best to apply changes despite some inaccuracies. Double check if the edit applied is what you intended.
+---
+Created At: 2026-06-15T18:56:35Z
+Completed At: 2026-06-15T18:56:35Z
+File Path: `file:///d:/New%20folder%20%283%29/student/js/kuis-belanja-v2.js`
+Total Lines: 941
+Total Bytes: 43115
+Showing lines 719 to 870
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+719:     btnSimpanEvaluasi.addEventListener('click', () => {
+720:         const rencana = inputPerencanaan.value.trim();
+721:         if (!rencana) {
+722:             Swal.fire({
+723:                 title: 'Rencana Belum Diisi!',
+724:                 text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+725:                 icon: 'info',
+726:                 confirmButtonColor: '#3498DB'
+727:             });
+728:             return;
+729:         }
+730: 
+731:         // === LANGKAH 1: SIMPAN LOKAL (INSTAN, TIDAK BISA GAGAL) ===
+732:         const evalData = {
+733:             saldoAwal: saldoAwal,
+734:             sisaSaldo: uangSaku,
+735:             daftarBelanjaan: daftarBelanjaan,
+736:             rencanaSisaUang: rencana
+737:         };
+738:         try {
+739:             sessionStorage.setItem('tempEvaluasiData', JSON.stringify(evalData));
+740:             localStorage.setItem('lastEvaluasiData', JSON.stringify(evalData));
+741:         } catch(e) { /* storage penuh, tidak apa-apa */ }
+742: 
+743:         // === LANGKAH 2: SEMBUNYIKAN MODAL SEKARANG ===
+744:         btnSimpanEvaluasi.disabled = true;
+745:                 userNama = JSON.parse(auth).nama;
+746:             }
+747: 
+748:             let docRefId = null;
+749:             let savePromises = [];
+750: 
+751:             // Simpan ke Firestore
+752:             if (typeof db !== 'undefined') {
+753:                 const docRef = db.collection('perencanaan').doc();
+754:                 docRefId = docRef.id;
+755:                 
+756:                 const p1 = docRef.set({
+757:                     namaSiswa: userNama,
+758:                     saldoAwal: saldoAwal,
+759:                     sisaSaldo: uangSaku,
+760:                     daftarBelanjaan: daftarBelanjaan,
+761:                     rencanaSisaUang: rencana,
+762:                     tanggal: firebase.firestore.FieldValue.serverTimestamp(),
+763:                     izinLanjut: false
+764:                 });
+765:                 savePromises.push(p1);
+766:             }
+767: 
+768:             // Integrasi dengan Dashboard Guru (Sistem Tab)
+769:             if (auth && typeof saveStudentResult === 'function') {
+770:                 const parsedAuth = JSON.parse(auth);
+771:                 const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+772:                 
+773:                 // Hitung total belanja
+774:                 const totalBelanja = daftarBelanjaan.reduce((sum, item) => sum + item.harga, 0);
+775:                 const jumlahBarang = daftarBelanjaan.length;
+776:                 
+777:                 // Generate HTML rincian barang beserta foto (Dikabungkan jika barang sama)
+778:                 const groupedItems = {};
+779:                 daftarBelanjaan.forEach(item => {
+780:                     if (!groupedItems[item.nama]) {
+781:                         groupedItems[item.nama] = { ...item, qty: 1, subtotal: item.harga };
+782:                     } else {
+783:                         groupedItems[item.nama].qty += 1;
+784:                         groupedItems[item.nama].subtotal += item.harga;
+785:                     }
+786:                 });
+787: 
+788:                 let rincianBarangHTML = '<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; margin-bottom:15px;">';
+789:                 if (jumlahBarang === 0) {
+790:                     rincianBarangHTML += '<span style="font-size:1.1rem; color:#7F8C8D;"><i>Tidak membeli apa-apa</i></span>';
+791:                 } else {
+792:                     Object.values(groupedItems).forEach(item => {
+793:                         let qtyBadge = item.qty > 1 ? `<div style="position:absolute; top:10px; right:10px; background:#F1C40F; color:#000; font-weight:bold; font-size:1.1rem; padding:5px 12px; border-radius:15px; border:2px solid #D4AC0D; box-shadow:0 2px 5px rgba(0,0,0,0.4); z-index:2;">x${item.qty}</div>` : '';
+794:                         rincianBarangHTML += `
+795:                             <div style="background:#fff; border:2px solid #ecf0f1; border-radius:15px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); position:relative; width:220px;">
+796:                                 ${qtyBadge}
+797:                                 <img src="${item.foto}" style="width:100%; height:150px; object-fit:cover; z-index:1; border-bottom:2px solid #f1f2f6;">
+798:                                 <div style="padding:15px; line-height:1.4; text-align:left;">
+799:                                     <div style="font-size:1.3rem; font-weight:900; color:#2C3E50; margin-bottom:8px;">${item.nama}</div>
+800:                                     <div style="font-size:1.2rem; color:#E74C3C; font-weight:800;">Rp ${item.subtotal.toLocaleString('id-ID')}</div>
+801:                                 </div>
+802:                             </div>
+803:                         `;
+804:                     });
+805:                 }
+806:                 rincianBarangHTML += '</div>';
+807: 
+808:                 // Rangkum catatan lengkap
+809:                 const catatanFormatted = `
+810:                     <div style="font-size:1.2rem; line-height:1.5;">
+811:                         <strong style="font-size:1.3rem; color:#34495E;">🛒 Total Belanja (${jumlahBarang} Barang):</strong> <span style="font-weight:900; color:#2C3E50;">Rp ${totalBelanja.toLocaleString('id-ID')}</span>
+812:                         ${rincianBarangHTML}
+813:                         <hr style="margin:12px 0; border:0; border-top:2px dashed #bdc3c7;">
+814:                         <strong>Modal Awal:</strong> Rp ${saldoAwal.toLocaleString('id-ID')}<br>
+815:                         <strong>Sisa Saldo Akhir:</strong> <span style="color:${uangSaku >= 0 ? '#27AE60' : '#E74C3C'}; font-weight:900; font-size:1.3rem;">Rp ${uangSaku.toLocaleString('id-ID')}</span><br>
+816:                         <strong>Status:</strong> <span style="font-weight:bold; background:${uangSaku >= 0 ? '#d5f5e3' : '#fadbd8'}; padding:2px 8px; border-radius:6px; color:${uangSaku >= 0 ? '#1e8449' : '#c0392b'};">${status}</span><br>
+817:                         <div style="background:#e8f4f8; padding:12px 15px; border-radius:8px; margin-top:12px; border-left:5px solid #3498DB; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+818:                             <strong style="color:#2980B9; font-size:1.15rem;">💡 Rencana Penggunaan Sisa Uang:</strong><br>
+819:                             <i style="color:#34495E; font-size:1.1rem;">"${rencana}"</i>
+820:                         </div>
+821:                     </div>
+822:                 `;
+823: 
+824:                 const p2 = saveStudentResult({
+825:                     nama: parsedAuth.nama,
+826:                     kelas: parsedAuth.kelas,
+827:                     aktivitas: "Mini-Game Belanja",
+828:                     skorAkhir: `Rp ${uangSaku}`,
+829:                     catatan: catatanFormatted
+830:                 });
+831:                 savePromises.push(p2);
+832:             }
+833: 
+834:             // Simpan ke Session Storage sebagai backup instan untuk AI Evaluasi
+835:             sessionStorage.setItem('tempEvaluasiData', JSON.stringify({
+836:                 saldoAwal: saldoAwal,
+837:                 sisaSaldo: uangSaku,
+838:                 daftarBelanjaan: daftarBelanjaan,
+839:                 rencanaSisaUang: rencana
+840:             }));
+841: 
+842:             // Biarkan proses simpan berjalan di latar belakang (tanpa await) agar instan
+843:             Promise.all(savePromises).catch(e => console.error("Background save error:", e));
+844: 
+845:             // Sembunyikan modal evaluasi
+846:             const modalEvaluasi = document.getElementById('modalEvaluasi');
+847:             if (modalEvaluasi) modalEvaluasi.style.display = 'none';
+848:             
+849:             // Tampilkan popup persetujuan guru (Gatekeeper dipindah ke sini)
+850:             Swal.fire({
+851:                 title: 'Telah Dikirim ke Guru!',
+852:                 html: 'Laporan belanjamu sedang diperiksa oleh guru di Dashboard.<br><br><span id="statusIzinTextSwal" style="color:#E67E22; font-weight:bold; font-size:1.2rem;">⏳ Menunggu Izin...</span>',
+853:                 icon: 'info',
+854:                 showConfirmButton: true,
+855:                 confirmButtonText: 'Lanjutkan ke Evaluasi AI',
+856:                 confirmButtonColor: '#27AE60',
+857:                 allowOutsideClick: false,
+858:                 allowEscapeKey: false,
+859:                 didOpen: () => {
+860:                     const confirmBtn = Swal.getConfirmButton();
+861:                     confirmBtn.disabled = true;
+862:                     confirmBtn.style.opacity = '0.5';
+863:                     confirmBtn.style.cursor = 'not-allowed';
+864:                     
+865:                     if (typeof db !== 'undefined' && docRefId) {
+866:                         // Dengarkan persetujuan guru secara real-time
+867:                         db.collection('perencanaan').doc(docRefId).onSnapshot((doc) => {
+868:                             if (doc.exists) {
+869:                                 const data = doc.data();
+870:                                 if (data.izinLanjut === true) {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+Created At: 2026-06-15T18:56:58Z
+Completed At: 2026-06-15T18:56:58Z
+File Path: `file:///d:/New%20folder%20%283%29/student/js/kuis-belanja-v2.js`
+Total Lines: 941
+Total Bytes: 43115
+Showing lines 712 to 850
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+712:         }).then((result) => {
+713:             if (result.isConfirmed) {
+714:                 akhiriGame();
+715:             }
+716:         });
+717:     });
+718: 
+719:     btnSimpanEvaluasi.addEventListener('click', () => {
+720:         const rencana = inputPerencanaan.value.trim();
+721:         if (!rencana) {
+722:             Swal.fire({
+723:                 title: 'Rencana Belum Diisi!',
+724:                 text: 'Tuliskan dulu rencanamu untuk sisa uang tersebut!',
+725:                 icon: 'info',
+726:                 confirmButtonColor: '#3498DB'
+727:             });
+728:             return;
+729:         }
+730: 
+731:         // === LANGKAH 1: SIMPAN LOKAL (INSTAN, TIDAK BISA GAGAL) ===
+732:         const evalData = {
+733:             saldoAwal: saldoAwal,
+734:             sisaSaldo: uangSaku,
+735:             daftarBelanjaan: daftarBelanjaan,
+736:             rencanaSisaUang: rencana
+737:         };
+738:         try {
+739:             sessionStorage.setItem('tempEvaluasiData', JSON.stringify(evalData));
+740:             localStorage.setItem('lastEvaluasiData', JSON.stringify(evalData));
+741:         } catch(e) { /* storage penuh, tidak apa-apa */ }
+742: 
+743:         // === LANGKAH 2: SEMBUNYIKAN MODAL SEKARANG ===
+744:         btnSimpanEvaluasi.disabled = true;
+745:                 userNama = JSON.parse(auth).nama;
+746:             }
+747: 
+748:             let docRefId = null;
+749:             let savePromises = [];
+750: 
+751:             // Simpan ke Firestore
+752:             if (typeof db !== 'undefined') {
+753:                 const docRef = db.collection('perencanaan').doc();
+754:                 docRefId = docRef.id;
+755:                 
+756:                 const p1 = docRef.set({
+757:                     namaSiswa: userNama,
+758:                     saldoAwal: saldoAwal,
+759:                     sisaSaldo: uangSaku,
+760:                     daftarBelanjaan: daftarBelanjaan,
+761:                     rencanaSisaUang: rencana,
+762:                     tanggal: firebase.firestore.FieldValue.serverTimestamp(),
+763:                     izinLanjut: false
+764:                 });
+765:                 savePromises.push(p1);
+766:             }
+767: 
+768:             // Integrasi dengan Dashboard Guru (Sistem Tab)
+769:             if (auth && typeof saveStudentResult === 'function') {
+770:                 const parsedAuth = JSON.parse(auth);
+771:                 const status = uangSaku >= 0 ? "Aman (Tersisa)" : "Minus (Hutang)";
+772:                 
+773:                 // Hitung total belanja
+774:                 const totalBelanja = daftarBelanjaan.reduce((sum, item) => sum + item.harga, 0);
+775:                 const jumlahBarang = daftarBelanjaan.length;
+776:                 
+777:                 // Generate HTML rincian barang beserta foto (Dikabungkan jika barang sama)
+778:                 const groupedItems = {};
+779:                 daftarBelanjaan.forEach(item => {
+780:                     if (!groupedItems[item.nama]) {
+781:                         groupedItems[item.nama] = { ...item, qty: 1, subtotal: item.harga };
+782:                     } else {
+783:                         groupedItems[item.nama].qty += 1;
+784:                         groupedItems[item.nama].subtotal += item.harga;
+785:                     }
+786:                 });
+787: 
+788:                 let rincianBarangHTML = '<div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; margin-bottom:15px;">';
+789:                 if (jumlahBarang === 0) {
+790:                     rincianBarangHTML += '<span style="font-size:1.1rem; color:#7F8C8D;"><i>Tidak membeli apa-apa</i></span>';
+791:                 } else {
+792:                     Object.values(groupedItems).forEach(item => {
+793:                         let qtyBadge = item.qty > 1 ? `<div style="position:absolute; top:10px; right:10px; background:#F1C40F; color:#000; font-weight:bold; font-size:1.1rem; padding:5px 12px; border-radius:15px; border:2px solid #D4AC0D; box-shadow:0 2px 5px rgba(0,0,0,0.4); z-index:2;">x${item.qty}</div>` : '';
+794:                         rincianBarangHTML += `
+795:                             <div style="background:#fff; border:2px solid #ecf0f1; border-radius:15px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); position:relative; width:220px;">
+796:                                 ${qtyBadge}
+797:                                 <img src="${item.foto}" style="width:100%; height:150px; object-fit:cover; z-index:1; border-bottom:2px solid #f1f2f6;">
+798:                                 <div style="padding:15px; line-height:1.4; text-align:left;">
+799:                                     <div style="font-size:1.3rem; font-weight:900; color:#2C3E50; margin-bottom:8px;">${item.nama}</div>
+800:                                     <div style="font-size:1.2rem; color:#E74C3C; font-weight:800;">Rp ${item.subtotal.toLocaleString('id-ID')}</div>
+801:                                 </div>
+802:                             </div>
+803:                         `;
+804:                     });
+805:                 }
+806:                 rincianBarangHTML += '</div>';
+807: 
+808:                 // Rangkum catatan lengkap
+809:                 const catatanFormatted = `
+810:                     <div style="font-size:1.2rem; line-height:1.5;">
+811:                         <strong style="font-size:1.3rem; color:#34495E;">🛒 Total Belanja (${jumlahBarang} Barang):</strong> <span style="font-weight:900; color:#2C3E50;">Rp ${totalBelanja.toLocaleString('id-ID')}</span>
+812:                         ${rincianBarangHTML}
+813:                         <hr style="margin:12px 0; border:0; border-top:2px dashed #bdc3c7;">
+814:                         <strong>Modal Awal:</strong> Rp ${saldoAwal.toLocaleString('id-ID')}<br>
+815:                         <strong>Sisa Saldo Akhir:</strong> <span style="color:${uangSaku >= 0 ? '#27AE60' : '#E74C3C'}; font-weight:900; font-size:1.3rem;">Rp ${uangSaku.toLocaleString('id-ID')}</span><br>
+816:                         <strong>Status:</strong> <span style="font-weight:bold; background:${uangSaku >= 0 ? '#d5f5e3' : '#fadbd8'}; padding:2px 8px; border-radius:6px; color:${uangSaku >= 0 ? '#1e8449' : '#c0392b'};">${status}</span><br>
+817:                         <div style="background:#e8f4f8; padding:12px 15px; border-radius:8px; margin-top:12px; border-left:5px solid #3498DB; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+818:                             <strong style="color:#2980B9; font-size:1.15rem;">💡 Rencana Penggunaan Sisa Uang:</strong><br>
+819:                             <i style="color:#34495E; font-size:1.1rem;">"${rencana}"</i>
+820:                         </div>
+821:                     </div>
+822:                 `;
+823: 
+824:                 const p2 = saveStudentResult({
+825:                     nama: parsedAuth.nama,
+826:                     kelas: parsedAuth.kelas,
+827:                     aktivitas: "Mini-Game Belanja",
+828:                     skorAkhir: `Rp ${uangSaku}`,
+829:                     catatan: catatanFormatted
+830:                 });
+831:                 savePromises.push(p2);
+832:             }
+833: 
+834:             // Simpan ke Session Storage sebagai backup instan untuk AI Evaluasi
+835:             sessionStorage.setItem('tempEvaluasiData', JSON.stringify({
+836:                 saldoAwal: saldoAwal,
+837:                 sisaSaldo: uangSaku,
+838:                 daftarBelanjaan: daftarBelanjaan,
+839:                 rencanaSisaUang: rencana
+840:             }));
+841: 
+842:             // Biarkan proses simpan berjalan di latar belakang (tanpa await) agar instan
+843:             Promise.all(savePromises).catch(e => console.error("Background save error:", e));
+844: 
+845:             // Sembunyikan modal evaluasi
+846:             const modalEvaluasi = document.getElementById('modalEvaluasi');
+847:             if (modalEvaluasi) modalEvaluasi.style.display = 'none';
+848:             
+849:             // Tampilkan popup persetujuan guru (Gatekeeper dipindah ke sini)
+850:             Swal.fire({
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+Created At: 2026-06-15T19:20:13Z
+Tool is running as a background task with task id: 7e20230d-6b37-4018-8f6f-7a1233641d37/task-12014
+Task Description: node -e "const fs=require('fs'); const lines=fs.readFileSync('C:\\\\Users\\\\ACER\\\\.gemini\\\\antigravity\\\\brain\\\\7e20230d-6b37-4018-8f6f-7a1233641d37\\\\.system_generated\\\\logs\\\\transcript_full.jsonl','utf8'); console.log('Found occurrences:', lines.split('btnSimpanEvaluasi.addEventListener').length - 1);"
+Task logs are available at: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-12014.log
+---
+Created At: 2026-06-15T19:20:36Z
+Tool is running as a background task with task id: 7e20230d-6b37-4018-8f6f-7a1233641d37/task-12021
+Task Description: node -e "const fs=require('fs'); const lines=fs.readFileSync('C:\\\\Users\\\\ACER\\\\.gemini\\\\antigravity\\\\brain\\\\7e20230d-6b37-4018-8f6f-7a1233641d37\\\\.system_generated\\\\logs\\\\transcript_full.jsonl','utf8').split('\n'); let maxLen=0; let bestContent=''; for(let line of lines) { if(!line)continue; try{ const obj=JSON.parse(line); if(obj.type==='TOOL_RESPONSE' && obj.content && typeof obj.content==='string') { if(obj.content.includes('btnSimpanEvaluasi.addEventListener') && obj.content.length > maxLen) { maxLen = obj.content.length; bestContent = obj.content; } } }catch(e){} } fs.writeFileSync('best_recovered.txt', bestContent);"
+Task logs are available at: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-12021.log
+---
+Created At: 2026-06-15T19:20:58Z
+Tool is running as a background task with task id: 7e20230d-6b37-4018-8f6f-7a1233641d37/task-12028
+Task Description: node -e "const fs=require('fs'); const lines=fs.readFileSync('C:\\\\Users\\\\ACER\\\\.gemini\\\\antigravity\\\\brain\\\\7e20230d-6b37-4018-8f6f-7a1233641d37\\\\.system_generated\\\\logs\\\\transcript_full.jsonl','utf8').split('\n'); for(let line of lines) { if(line.includes('btnSimpanEvaluasi.addEventListener')) { console.log(line.substring(0, 500)); break; } }"
+Task logs are available at: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-12028.log
+---
+Created At: 2026-06-15T19:28:20Z
+Tool is running as a background task with task id: 7e20230d-6b37-4018-8f6f-7a1233641d37/task-12117
+Task Description: node -e "const fs=require('fs'); const lines=fs.readFileSync('C:\\\\Users\\\\ACER\\\\.gemini\\\\antigravity\\\\brain\\\\7e20230d-6b37-4018-8f6f-7a1233641d37\\\\.system_generated\\\\logs\\\\transcript_full.jsonl','utf8').split('\n'); let res=''; for(let line of lines) { if(!line)continue; try { const obj=JSON.parse(line); if(obj.content && obj.content.includes('btnSimpanEvaluasi.addEventListener')) { res += obj.content + '\n---\n'; } } catch(e){} } fs.writeFileSync('found_code.txt', res);"
+Task logs are available at: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-12117.log
+---
