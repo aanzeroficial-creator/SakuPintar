@@ -1,0 +1,89 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root {
+  
+  --primary-color: #FF6B6B;      
+  --secondary-color: #4ECDC4;    
+  --accent-color: #FFE66D;       
+  --background-student: #F7FFF7; 
+  
+  
+  --primary-teacher: #2C3E50;    
+  --secondary-teacher: #34495E;
+  --accent-teacher: #3498DB;     
+  --background-teacher: #ECF0F1; 
+  
+  
+  --text-dark: #2D3436;
+  --text-light: #FFFFFF;
+  --success: #2ECC71;            
+  --danger: #E74C3C;             
+  --warning: #F1C40F;            
+
+  
+  --font-student: 'Fredoka', sans-serif;
+  --font-teacher: 'Inter', sans-serif;
+  --font-logo: 'Nunito', sans-serif;
+
+  
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 15px 25px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s ease;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  
+  font-family: var(--font-student);
+  color: var(--text-dark);
+  background-color: var(--background-student);
+  line-height: 1.6;
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  font-family: inherit;
+  transition: var(--transition);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.02); 
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);  
+}
