@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script>
+        if (!sessionStorage.getItem('siswaAuth')) window.location.replace('../login-siswa.html');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bijak Mengelola Uang | Saku Pintar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../shared/css/global.css">
+    
+    <link rel="stylesheet" href="css/student-style.css">
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+
+    <style>
+        
+        @media (min-width: 1025px) {
+            .nav-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            #btnToggleGlobalAudio {
+                margin-right: 0 !important;
+                
+                z-index: 10;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                margin: 0;
+                z-index: 5;
+            }
+
+            #userIdentityContainer {
+                margin-left: auto !important;
+                
+                z-index: 10;
+            }
+
+            .btn-home {
+                z-index: 10;
+            }
+        }
+
+        
+        @media (max-width: 1024px) and (orientation: landscape) {
+            .nav-container {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 15px;
+            }
+
+            #btnToggleGlobalAudio {
+                margin-right: 0 !important;
+                z-index: 10;
+            }
+
+            .logo {
+                position: static;
+                transform: none;
+                margin-right: auto !important;
+                
+                z-index: 10;
+            }
+
+            #userIdentityContainer {
+                margin-left: 0 !important;
+                
+                z-index: 10;
+            }
+
+            .btn-home {
+                z-index: 10;
+            }
+        }
+
+        
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+            .nav-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            #btnToggleGlobalAudio {
+                margin-right: 0 !important;
+                z-index: 10;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                margin: 0;
+                z-index: 5;
+            }
+
+            #userIdentityContainer {
+                margin-left: auto !important;
+                z-index: 10;
+            }
+
+            .btn-home {
+                z-index: 10;
+            }
+        }
+
+        
+        .welcome-section h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            color: #FFFFFF;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: bounceTitle 3s ease-in-out infinite;
+        }
+
+        @keyframes bounceTitle {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+        }
+
+        .welcome-section p {
+            font-size: 1.3rem;
+            color: #E0F7FA;
+            font-weight: 600;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            margin-top: 5px;
+        }
+
+        
+        .book-wrapper {
+            width: 100%;
+            max-width: 900px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        #book-container {
+            width: 900px;
+            height: 506px;
+            position: relative;
+            background-color: #fdfaf4;
+            border-radius: 12px;
+        }
+
+        .book {
+            width: 900px;
+            height: 506px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            background: #fdfaf4;
+            overflow: visible;
+        }
+
+        .my-page {
+            width: 450px;
+            height: 506px;
+            background-color: #fdfaf4;
+            box-sizing: border-box;
+        }
+
+        .page-content {
+            width: 100%;
+            height: 100%;
+            background-size: 200% 100%;
+            background-repeat: no-repeat;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+        }
+
+        .page-content-left {
+            background-position: left center;
+            border-radius: 12px 0 0 12px;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .page-content-right {
+            background-position: right center;
+            border-radius: 0 12px 12px 0;
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        
+        .book-spine-shadow {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 32px;
+            transform: translateX(-50%);
+            background: linear-gradient(to right,
+                    rgba(0, 0, 0, 0) 0%,
+                    rgba(0, 0, 0, 0.15) 50%,
+                    rgba(0, 0, 0, 0) 100%);
+            pointer-events: none;
+            z-index: 1000;
+            transition: opacity 0.25s ease;
+            
+        }
+
+        .book-spine {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.08);
+            pointer-events: none;
+            z-index: 1001;
+            transition: opacity 0.25s ease;
+            
+        }
+
+        
+        #book-container.is-flipping .book-spine-shadow,
+        #book-container.is-flipping .book-spine {
+            opacity: 0;
+        }
+
+        
+        .book-controls {
+            text-align: center;
+            margin-top: 25px;
+            font-family: 'Fredoka', 'Segoe UI', sans-serif;
+        }
+
+        .page-indicator {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .hint-text {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        
+        #landscape-warning {
+            display: none !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background-color: #2C3E50 !important;
+            color: white !important;
+            z-index: 999999 !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+        }
+        #landscape-warning .phone-icon { font-size: 5rem; margin-bottom: 20px; animation: rotatePhone 2s infinite ease-in-out; }
+        @keyframes rotatePhone { 0% { transform: rotate(0deg); } 50% { transform: rotate(-90deg); } 100% { transform: rotate(-90deg); } }
+        @media screen and (max-width: 768px) and (orientation: portrait) { #landscape-warning { display: flex !important; } }
+
+        
+        @media (max-width: 1024px) {
+            .book {
+                overflow: hidden !important;
+            }
+        }
+
+        @media (max-width: 1024px) and (orientation: landscape), (max-width: 768px) {
+            
+            .student-nav {
+                padding: 4px 0 !important;
+                position: relative !important;
+            }
+            .nav-container {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                background: transparent !important;
+                padding: 4px 15px !important;
+                box-shadow: none !important;
+                gap: 6px !important;
+                position: relative !important;
+                min-height: 48px !important;
+            }
+            
+            body {
+                padding-top: 0 !important;
+            }
+
+            .logo {
+                order: 2 !important;
+                font-size: 1.4rem !important;
+                width: auto !important;
+                text-align: center !important;
+                margin: 0 !important;
+                position: absolute !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                background: linear-gradient(to bottom, #FFD700, #FF8C00);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent !important;
+                -webkit-text-stroke: 0.5px white;
+                filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.2)) !important;
+                text-shadow: none !important;
+                z-index: 5 !important;
+                white-space: nowrap !important;
+            }
+
+            .btn-home {
+                order: 4 !important;
+                padding: 5px 12px !important;
+                font-size: 0.8rem !important;
+                margin: 0 0 0 5px !important;
+                box-shadow: 0 3px 0 #C0392B !important;
+                border-radius: 12px !important;
+                position: relative !important;
+                z-index: 10 !important;
+            }
+            
+            #btnToggleGlobalAudio {
+                order: 1 !important;
+                margin: 0 !important;
+                font-size: 0.75rem !important;
+                padding: 5px 10px !important;
+                border-radius: 12px !important;
+                position: relative !important;
+                z-index: 10 !important;
+            }
+
+            #userIdentityContainer {
+                order: 3 !important;
+                width: auto !important;
+                margin: 0 0 0 auto !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                z-index: 10 !important;
+            }
+            
+            #userIdentityContainer > div {
+                display: none !important;
+            }
+            
+            #userIdentityContainer > button {
+                font-size: 0.75rem !important;
+                padding: 4px 10px !important;
+                margin: 0 !important;
+                box-shadow: 0 2px 0 #C0392B !important;
+                border-radius: 10px !important;
+            }
+
+            
+            .welcome-section {
+                display: none !important;
+            }
+
+            
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+            
+            main.container {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+            
+            
+            .book-wrapper {
+                margin: 5px auto !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .book-controls {
+                margin-top: 10px !important;
+            }
+            
+            .page-indicator {
+                font-size: 0.9rem !important;
+                padding: 4px 12px !important;
+            }
+            
+            .hint-text {
+                font-size: 0.85rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <div id="landscape-warning">
+        <div class="phone-icon">📱</div>
+        <h2 style="margin-bottom: 15px;">Putar Layar HP Kamu!</h2>
+        <p style="font-size: 1.1rem; line-height: 1.5;">Buku digital ini didesain khusus untuk tampilan mendatar (Landscape) agar lebih seru dan jelas.</p>
+        <button id="btnForceLandscape" style="display: inline-block; padding: 15px 30px; font-size: 1.2rem; background: #8E44AD; color: white; border: none; border-radius: 30px; margin-top: 20px; cursor: pointer; box-shadow: 0 5px 0 #732D91; font-weight: bold;">Putar Layar (Layar Penuh)</button>
+    </div>
+
+    
+    <nav class="student-nav">
+        <div class="container nav-container">
+            <div class="logo">Saku Pintar</div>
+            <a href="menu-belajar.html" class="btn btn-home">Kembali</a>
+        </div>
+    </nav>
+
+    
+    <main class="container">
+        <header class="welcome-section text-center">
+            <h1>Flipbook Kebutuhan Keinginan</h1>
+            <p>Membaca komik/cerita interaktif mengenai literasi keuangan!</p>
+        </header>
+
+        
+        <div class="book-wrapper">
+            
+            <div id="book-container">
+                <div class="book" id="book">
+                    
+                </div>
+                
+                <div class="book-spine-shadow"></div>
+                <div class="book-spine"></div>
+            </div>
+        </div>
+
+        
+        <div class="book-controls">
+            <div class="page-indicator" id="page-indicator">Cerita 1 / 21</div>
+            <br>
+            <div class="hint-text">📖 Usap (swipe) halaman ganda atau klik tepi halaman untuk membalik</div>
+        </div>
+    </main>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" defer></script>
+    <script src="../shared/js/firebase-db.js" defer></script>
+    <script src="../shared/js/presence-tracker.js" defer></script>
+
+    
+    <script src="../shared/js/utils.js"></script>
+
+    <script>
+        
+        const pages = [];
+        for (let i = 1; i <= 21; i++) {
+            pages.push(`aset student/flipbook/${i}.png`);
+        }
+
+        let pageFlip = null;
+        const pageIndicator = document.getElementById('page-indicator');
+        const bookContainer = document.getElementById('book');
+
+        
+        function setupBookDOM() {
+            bookContainer.innerHTML = ''; 
+
+            pages.forEach((imageUrl) => {
+                
+                const leftPage = document.createElement('div');
+                leftPage.className = 'my-page';
+                leftPage.innerHTML = `
+                    <div class="page-content page-content-left" style="background-image: url('${imageUrl}');"></div>
+                `;
+                bookContainer.appendChild(leftPage);
+
+                
+                const rightPage = document.createElement('div');
+                rightPage.className = 'my-page';
+                rightPage.innerHTML = `
+                    <div class="page-content page-content-right" style="background-image: url('${imageUrl}');"></div>
+                `;
+                bookContainer.appendChild(rightPage);
+            });
+        }
+
+        
+        function initBook() {
+            setupBookDOM();
+
+            
+            pageFlip = new St.PageFlip(bookContainer, {
+                width: 450, 
+                height: 506, 
+                size: "fixed",
+                showCover: false, 
+                usePortrait: false, 
+                drawShadow: true, 
+                maxShadowOpacity: 0.15,
+                flippingTime: 1200, 
+                swipeDistance: 30, 
+                showPageCorners: true 
+            });
+
+            
+            pageFlip.loadFromHTML(document.querySelectorAll('.my-page'));
+
+            
+            pageFlip.on('changeState', (e) => {
+                if (e.data === 'flipping') {
+                    playFlipSound();
+                }
+
+                
+                const container = document.getElementById('book-container');
+                if (e.data === 'flipping' || e.data === 'user_fold') {
+                    container.classList.add('is-flipping');
+                } else {
+                    container.classList.remove('is-flipping');
+                }
+            });
+
+            
+            pageFlip.on('flip', (e) => {
+                const newPageIndex = e.data;
+                const currentStoryIndex = Math.floor(newPageIndex / 2) + 1;
+
+                
+                pageIndicator.textContent = `Cerita ${currentStoryIndex} / ${pages.length}`;
+
+                
+                if (typeof logActivity === 'function') {
+                    logActivity(`📖 Membalik cerita ke cerita ${currentStoryIndex}`);
+                }
+            });
+        }
+
+        
+        function finishReading() {
+            if (typeof logActivity === 'function') {
+                logActivity('📖 Selesai membaca Flipbook Kebutuhan Keinginan (Halaman 21)', 100);
+            }
+            window.location.href = 'menu-belajar.html';
+        }
+
+        
+        function playFlipSound() {
+            const audio = new Audio('../sfx buka kertas.mp3');
+            audio.play().catch(() => { });
+        }
+
+        
+        bookContainer.addEventListener('click', (e) => {
+            if (!pageFlip) return;
+            const currentIndex = pageFlip.getCurrentPageIndex();
+            if (currentIndex >= (pages.length * 2 - 2)) {
+                const rect = bookContainer.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                if (clickX > rect.width / 2) {
+                    finishReading();
+                }
+            }
+        });
+
+        
+        let startX = 0;
+
+        bookContainer.addEventListener('mousedown', (e) => {
+            startX = e.clientX;
+        });
+
+        bookContainer.addEventListener('mouseup', (e) => {
+            if (!pageFlip) return;
+            const currentIndex = pageFlip.getCurrentPageIndex();
+            if (currentIndex >= (pages.length * 2 - 2)) {
+                const diffX = startX - e.clientX;
+                if (diffX > 50) { 
+                    finishReading();
+                }
+            }
+        });
+
+        bookContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        bookContainer.addEventListener('touchend', (e) => {
+            if (!pageFlip) return;
+            const currentIndex = pageFlip.getCurrentPageIndex();
+            if (currentIndex >= (pages.length * 2 - 2)) {
+                const diffX = startX - e.changedTouches[0].clientX;
+                if (diffX > 50) { 
+                    finishReading();
+                }
+            }
+        }, { passive: true });
+
+        
+        function adjustBookScale() {
+            const container = document.getElementById('book-container');
+            if (!container) return;
+            const wrapper = container.parentElement;
+            if (!wrapper) return;
+            
+            const containerWidth = wrapper.clientWidth;
+            const bookWidth = 900; 
+            const bookHeight = 506; 
+
+            
+            const isLandscape = window.innerHeight < window.innerWidth || window.innerHeight < 600;
+            let heightOffset = 140; 
+            if (isLandscape) {
+                const nav = document.querySelector('.student-nav');
+                const navHeight = nav ? nav.offsetHeight : 0;
+                heightOffset = navHeight + 8; 
+                const availableHeight = window.innerHeight - heightOffset;
+
+                
+                const scaleX = containerWidth / bookWidth;
+                const scaleY = availableHeight / bookHeight;
+
+                let scale = Math.min(scaleX, scaleY);
+                
+                
+                if (scale > 1 && containerWidth >= bookWidth) {
+                    scale = 1;
+                }
+
+                
+                const leftMargin = (containerWidth - bookWidth) / 2;
+                container.style.marginLeft = `${leftMargin}px`;
+
+                if (scale < 1) {
+                    container.style.transform = `scale(${scale})`;
+                    container.style.transformOrigin = 'center top';
+                    wrapper.style.height = `${bookHeight * scale}px`;
+                } else {
+                    container.style.transform = 'none';
+                    wrapper.style.height = `${bookHeight}px`;
+                }
+            } else {
+                
+                container.style.marginLeft = `${(containerWidth - bookWidth) / 2}px`;
+                container.style.transform = 'none';
+                wrapper.style.height = `${bookHeight}px`;
+            }
+        }
+
+        window.addEventListener('resize', adjustBookScale);
+        window.addEventListener('load', adjustBookScale);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(adjustBookScale, 100);
+            setTimeout(adjustBookScale, 300);
+            setTimeout(adjustBookScale, 500);
+        });
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initBook();
+            adjustBookScale();
+
+            
+            const btnForceLandscape = document.getElementById('btnForceLandscape');
+            const rotateOverlay = document.getElementById('landscape-warning');
+            
+            async function forceLandscapeMode() {
+                try {
+                    if (document.documentElement.requestFullscreen) {
+                        await document.documentElement.requestFullscreen();
+                    } else if (document.documentElement.webkitRequestFullscreen) {
+                        await document.documentElement.webkitRequestFullscreen();
+                    }
+                    if (screen.orientation && screen.orientation.lock) {
+                        await screen.orientation.lock('landscape');
+                    }
+                } catch (e) {
+                    console.log("Auto-rotate gagal:", e);
+                    if (window.innerHeight > window.innerWidth) {
+                        const overlayText = rotateOverlay.querySelector('h2');
+                        const overlayDesc = rotateOverlay.querySelector('p');
+                        if (overlayText && overlayDesc) {
+                            overlayText.innerHTML = "Gagal Memutar Layar 🔒";
+                            overlayDesc.innerHTML = "Sistem HP Anda memblokir rotasi otomatis. <b>Matikan fitur 'Kunci Orientasi' di pengaturan HP Anda</b>, lalu putar HP secara manual!";
+                        }
+                        if (btnForceLandscape) btnForceLandscape.style.display = 'none';
+                    }
+                }
+            }
+
+            if(btnForceLandscape) {
+                btnForceLandscape.addEventListener('click', forceLandscapeMode);
+            }
+
+            setTimeout(() => {
+                if (typeof logActivity === 'function') {
+                    logActivity('📖 Mulai membaca Flipbook Kebutuhan Keinginan');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

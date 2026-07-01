@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script>
+        if (!sessionStorage.getItem('siswaAuth')) window.location.replace('../login-siswa.html');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Eksplorasi Misi | Saku Pintar</title>
+
+    <link rel="stylesheet" href="../shared/css/global.css">
+
+    <link rel="stylesheet" href="css/student-style.css">
+
+    <link rel="stylesheet" href="../shared/css/chatbot.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400..900&display=swap');
+
+        @font-face {
+            font-family: 'Skillet Condensed';
+            src: url('../shared/fonts/skillet-condensed.ttf') format('truetype'),
+                url('../shared/fonts/skillet-condensed.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        html {
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            overscroll-behavior: auto !important;
+            height: auto !important;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            padding-top: 80px !important;
+            overflow-y: visible !important;
+            overflow-x: hidden !important;
+            overscroll-behavior: auto !important;
+            -webkit-overflow-scrolling: touch;
+            background-color: #85C1E9 !important;
+            background-image: url('../shared/assets/bg-pantai.png');
+            background-size: cover;
+            background-position: center bottom;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: var(--font-student), 'Fredoka', sans-serif;
+            color: #2D3436;
+        }
+
+
+        :fullscreen,
+        :-webkit-full-screen {
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+        }
+
+
+        html:fullscreen body,
+        html:-webkit-full-screen body {
+            overflow-y: visible !important;
+            height: auto !important;
+        }
+
+
+        #landscape-warning {
+            display: none !important;
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2C3E50;
+            color: white;
+            z-index: 99999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #landscape-warning .phone-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: rotatePhone 2s infinite ease-in-out;
+        }
+
+        @keyframes rotatePhone {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(-90deg);
+            }
+
+            100% {
+                transform: rotate(-90deg);
+            }
+        }
+
+        @media screen and (max-width: 768px) and (orientation: portrait) {
+            #landscape-warning {
+                display: flex !important;
+            }
+        }
+
+        .student-nav {
+            background: #FFFFFF !important;
+            border-bottom: 4px solid #3498DB;
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .student-nav .logo {
+            background: none !important;
+            -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+            color: #10c2e2 !important;
+            -webkit-text-stroke: 0px transparent !important;
+            text-shadow: 3px 3px 0px #0b849b !important;
+            filter: none !important;
+            letter-spacing: normal;
+            font-size: 2.2rem;
+            font-weight: bold;
+            font-family: 'Fredoka', 'Nunito', sans-serif !important;
+            display: inline-block;
+            line-height: 1;
+            margin: 0 !important;
+            z-index: 5 !important;
+        }
+
+        @media (min-width: 1025px) {
+            .student-nav .nav-container {
+                position: relative !important;
+            }
+            .student-nav .logo {
+                position: absolute !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%, -50%) !important;
+            }
+        }
+
+        .student-nav .btn-home {
+            background: linear-gradient(to bottom, #FF7043, #F4511E) !important;
+            color: white !important;
+            border: none !important;
+            padding: 8px 20px !important;
+            border-radius: 20px !important;
+            text-decoration: none;
+            transition: all 0.1s;
+            box-shadow: 0 4px 0 #D84315 !important;
+            font-weight: bold;
+        }
+
+        .student-nav .btn-home:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #D84315 !important;
+        }
+
+
+        .quiz-card {
+            background: #FFFDF0 !important;
+            border: 4px solid #F39C12 !important;
+            border-radius: 25px !important;
+            box-shadow: 0 10px 0 #D35400, 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+            padding: 30px;
+            margin-top: 40px;
+            margin-bottom: 50px;
+            animation: floatIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-out;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #2D3436 !important;
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .quiz-card h2 {
+            color: #E67E22 !important;
+            text-shadow: 2px 2px 0px #FFF, 4px 4px 0px rgba(230, 126, 34, 0.15) !important;
+            font-size: 2.3rem !important;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+
+        #pilihKelompokArea label {
+            color: #34495E;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        #pilihanKelompok {
+            background: #FFFFFF !important;
+            color: #2D3436;
+            border: 3px solid #3498DB;
+            border-radius: 15px;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            outline: none;
+            transition: all 0.2s;
+            appearance: none;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #2980B9;
+        }
+
+        #pilihanKelompok:focus {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #2980B9;
+        }
+
+        #btnAcakCerita {
+            background: linear-gradient(to bottom, #FF5722, #E64A19) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 20px !important;
+            padding: 16px;
+            box-shadow: 0 8px 0 #BF360C, 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+            text-transform: uppercase;
+            font-weight: 900 !important;
+            font-size: 1.25rem !important;
+            letter-spacing: 1px;
+            transition: all 0.1s ease;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        #btnAcakCerita:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #BF360C, 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+        }
+
+
+        .stumble-transition {
+            animation: revealSlow 2s cubic-bezier(0.1, 0.8, 0.1, 1) forwards;
+        }
+
+        @keyframes revealSlow {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+                filter: blur(10px);
+            }
+
+            50% {
+                opacity: 0.5;
+                filter: blur(5px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+
+
+        #hasilCeritaArea>div:nth-child(1) {
+            background: #FFFDE7 !important;
+            border: 3px solid #F1C40F !important;
+            border-radius: 20px;
+            box-shadow: 0 6px 0 #F9E79F !important;
+            padding: 18px;
+            margin-bottom: 25px;
+        }
+
+        #hasilCeritaArea h3 {
+            text-shadow: none;
+            font-size: 1.5rem;
+            margin-top: 0;
+            font-weight: bold;
+        }
+
+        #hasilCeritaArea>div:nth-child(1) h3 {
+            color: #B7950B !important;
+        }
+
+        #teksCerita {
+            color: #2D3436 !important;
+            font-size: 1.2rem !important;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+
+        #hasilCeritaArea>div:nth-child(2) {
+            background: #F5EEF8 !important;
+            border: 3px solid #9B59B6 !important;
+            border-radius: 20px;
+            box-shadow: 0 6px 0 #E8DAEF !important;
+            padding: 18px;
+            margin-bottom: 25px;
+        }
+
+        #hasilCeritaArea>div:nth-child(2) h3 {
+            color: #7D3C98 !important;
+            text-shadow: none !important;
+        }
+
+        #teksAturan {
+            color: #2D3436 !important;
+            font-size: 1.1rem !important;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+
+        #hasilCeritaArea>div:nth-child(1)>div:last-child {
+            background: #E8F8F5 !important;
+            border: 3px solid #2ECC71 !important;
+            border-radius: 15px;
+            padding: 12px;
+            margin-top: 15px;
+            box-shadow: 0 4px 0 #A9DFBF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #hasilCeritaArea>div:nth-child(1)>div:last-child span:first-child {
+            color: #16A085 !important;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        #infoUangSakuMisi {
+            color: #27AE60 !important;
+            text-shadow: none !important;
+            font-size: 2.1rem !important;
+            letter-spacing: 1px;
+            font-weight: 900 !important;
+            display: block;
+            margin-top: 5px;
+            animation: bounceSmall 2s infinite ease-in-out;
+        }
+
+        @keyframes bounceSmall {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+
+        #hasilCeritaArea a.btn-student {
+            background: linear-gradient(to bottom, #4CAF50, #388E3C) !important;
+            color: white !important;
+            font-weight: 900 !important;
+            text-transform: uppercase;
+            box-shadow: 0 8px 0 #1B5E20, 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+            border: none !important;
+            transition: all 0.1s ease;
+            padding: 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        #hasilCeritaArea a.btn-student:hover {
+            transform: translateY(2px);
+            box-shadow: 0 6px 0 #1B5E20 !important;
+        }
+
+        #hasilCeritaArea a.btn-student:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #1B5E20 !important;
+        }
+
+        .form-control option {
+            background: #FFFFFF;
+            color: #2D3436;
+        }
+
+        @media (max-width: 768px) {
+
+            .student-nav {
+                padding: 4px 0 !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: #FFFFFF !important;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08) !important;
+            }
+
+            .nav-container {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                background: transparent !important;
+                padding: 4px 15px !important;
+                box-shadow: none !important;
+                z-index: 1000 !important;
+                gap: 6px !important;
+                position: relative !important;
+                min-height: 48px !important;
+            }
+
+
+            body {
+                padding-top: 65px !important;
+            }
+
+
+            .logo {
+                order: 2 !important;
+                font-size: 1.4rem !important;
+                width: auto !important;
+                text-align: center !important;
+                margin: 0 !important;
+                position: absolute !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                background: linear-gradient(to bottom, #FFD700, #FF8C00);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent !important;
+                -webkit-text-stroke: 0.5px white;
+                filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.2)) !important;
+                text-shadow: none !important;
+                z-index: 5 !important;
+                white-space: nowrap !important;
+            }
+
+
+            .btn-home {
+                order: 4 !important;
+                padding: 5px 12px !important;
+                font-size: 0.8rem !important;
+                margin: 0 0 0 5px !important;
+                box-shadow: 0 3px 0 #C0392B !important;
+                border-radius: 12px !important;
+                position: relative !important;
+                z-index: 10 !important;
+            }
+
+
+            #btnToggleGlobalAudio {
+                order: 1 !important;
+                margin: 0 !important;
+                font-size: 0.75rem !important;
+                padding: 5px 10px !important;
+                border-radius: 12px !important;
+                position: relative !important;
+                z-index: 10 !important;
+            }
+
+
+            #userIdentityContainer {
+                order: 3 !important;
+                width: auto !important;
+                margin: 0 0 0 auto !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                z-index: 10 !important;
+            }
+
+
+            #userIdentityContainer>div {
+                display: none !important;
+            }
+
+            #userIdentityContainer>button {
+                font-size: 0.75rem !important;
+                padding: 4px 10px !important;
+                margin: 0 !important;
+                box-shadow: 0 2px 0 #C0392B !important;
+                border-radius: 10px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="landscape-warning">
+        <div class="phone-icon">📱</div>
+        <h2 style="margin-bottom: 15px;">Putar Layar HP Kamu!</h2>
+        <p style="font-size: 1.1rem; line-height: 1.5;">Misi Eksplorasi ini didesain khusus untuk tampilan mendatar
+            (Landscape) agar lebih seru dan jelas.</p>
+        <button id="btnForceLandscape"
+            style="display: inline-block; padding: 15px 30px; font-size: 1.2rem; background: #8E44AD; color: white; border: none; border-radius: 30px; margin-top: 20px; cursor: pointer; box-shadow: 0 5px 0 #732D91; font-weight: bold;">Putar
+            Layar (Layar Penuh)</button>
+    </div>
+
+    <nav class="student-nav">
+        <div class="container nav-container">
+            <div class="logo">Saku Pintar</div>
+            <a href="index.html" class="btn btn-home">Kembali</a>
+        </div>
+    </nav>
+    <main class="container" style="margin-top: 40px; margin-bottom: 50px;">
+
+
+        <section id="sectionCerita" class="quiz-card" style="display: block;">
+            <h2>Misi Misteri Kelompok!</h2>
+
+            <div id="pilihKelompokArea" style="margin-bottom: 20px;">
+                <label style="display:block; font-weight:bold; margin-bottom:10px; text-align:left;">Kamu dari Kelompok
+                    Berapa?</label>
+                <select id="pilihanKelompok" class="form-control"
+                    style="font-size:1.1rem; margin-bottom:15px; width:100%;">
+                    <option value="">-- Pilih Kelompokmu --</option>
+
+                </select>
+
+
+                <div id="rouletteContainer"
+                    style="display: none; position: relative; width: 100%; max-width: 100%; box-sizing: border-box; height: 140px; overflow: hidden; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 4px solid rgba(255, 255, 255, 0.6); border-radius: 15px; box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0,0,0,0.05); transform: translateZ(0); -webkit-transform: translateZ(0); mask-image: radial-gradient(white, black); -webkit-mask-image: -webkit-radial-gradient(white, black);">
+
+                    <div
+                        style="position: absolute; top: -2px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #E74C3C; z-index: 10; filter: drop-shadow(0 3px 3px rgba(0,0,0,0.3));">
+                    </div>
+
+
+                    <div id="rouletteTrack"
+                        style="display: flex; height: 100%; align-items: center; width: max-content; transition: transform 4.5s cubic-bezier(0.1, 0.8, 0.1, 1); transform: translateX(0);">
+
+                    </div>
+
+
+                    <div
+                        style="position: absolute; top: 0; bottom: 0; left: 50%; width: 100px; transform: translateX(-50%); background: linear-gradient(to bottom, rgba(52, 152, 219, 0.05), transparent, rgba(52, 152, 219, 0.05)); border-left: 3px solid rgba(52, 152, 219, 0.4); border-right: 3px solid rgba(52, 152, 219, 0.4); pointer-events: none; z-index: 5;">
+                    </div>
+                </div>
+
+                <button id="btnAcakCerita" class="btn btn-student" style="width: 100%; font-size:1.2rem;">Acak & Buka
+                    Misi Misteri!</button>
+                <p id="infoGacha" style="color:#777; font-size:0.9rem; margin-top:10px;">Setiap kelompok akan
+                    mendapatkan kasus yang berbeda-beda secara acak.</p>
+            </div>
+
+            <div id="hasilCeritaArea" style="display: none;">
+                <div>
+                    <h3>Cerita Kasus Kelompokmu:</h3>
+                    <div id="fotoCeritaArea"
+                        style="margin-bottom: 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px;">
+                    </div>
+                    <p id="teksCerita">Memuat cerita...</p>
+                    <div>
+                        <span>Modal Uang Saku:</span>
+                        <span id="infoUangSakuMisi">Rp ...</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Aturan Main:</h3>
+                    <p id="teksAturan">Memuat aturan...</p>
+                </div>
+
+                <a href="instruksi-toko.html" class="btn btn-student">Ayo Pergi Berbelanja!</a>
+            </div>
+        </section>
+    </main>
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+    <script src="../shared/js/firebase-db.js" defer></script>
+    <script src="../shared/js/presence-tracker.js" defer></script>
+    <script src="../shared/js/utils.js" defer></script>
+    <script src="js/eksplorasi.js" defer></script>
+    <script src="../shared/js/chatbot.js" defer></script>
+</body>
+
+</html>

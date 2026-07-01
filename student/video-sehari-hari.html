@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <script>
+        if (!sessionStorage.getItem('siswaAuth')) window.location.replace('../login-siswa.html');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Sehari-hari | Saku Pintar</title>
+    
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <link rel="stylesheet" href="css/student-style.css">
+    <style>
+        .video-action-buttons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .video-action-buttons {
+                flex-direction: column-reverse;
+                align-items: center;
+                gap: 15px;
+            }
+            .video-action-buttons .btn-student {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="student-nav">
+        <div class="container nav-container">
+            <div class="logo">Saku Pintar</div>
+            <a href="menu-belajar.html" class="btn btn-home">Kembali</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="welcome-section text-center">
+            <h1>Video Sehari-hari</h1>
+            <p>Tonton video studi kasus mengenai pengelolaan keuangan sehari-hari!</p>
+        </header>
+
+        
+        <section class="video-section">
+            <div class="video-container">
+                
+                <iframe src="https://www.youtube.com/embed/UCrzWFTDi9c" title="Studi Kasus Keuangan" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <div class="text-center video-action-buttons">
+                <a href="menu-belajar.html" class="btn btn-student" style="background-color: #E74C3C; box-shadow: 0 6px 0 #C0392B;">⬅️ Kembali ke Menu Belajar</a>
+                <a href="mix-match.html" class="btn btn-student" style="background-color: #2ECC71; box-shadow: 0 6px 0 #27AE60;">Lanjut ke Pilahku ➡️</a>
+            </div>
+        </section>
+    </main>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" defer></script>
+    <script src="../shared/js/firebase-db.js" defer></script>
+    <script src="../shared/js/presence-tracker.js" defer></script>
+
+    
+    <script src="../shared/js/utils.js" defer></script>
+    
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            setTimeout(() => {
+                if (typeof logActivity === 'function') {
+                    logActivity('📚 Mulai menonton materi "Video Sehari-hari"');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script>
+        if (!sessionStorage.getItem('siswaAuth')) window.location.replace('../login-siswa.html');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pilah Aku | Saku Pintar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../shared/css/global.css">
+    
+    <link rel="stylesheet" href="css/student-style.css">
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Fredoka', 'Nunito', sans-serif;
+            background-color: #85C1E9;
+        }
+
+        
+        @media (min-width: 1025px) {
+            .nav-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            #btnToggleGlobalAudio {
+                margin-right: 0 !important;
+                
+                z-index: 10;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                margin: 0;
+                z-index: 5;
+            }
+
+            #userIdentityContainer {
+                margin-left: auto !important;
+                
+                z-index: 10;
+            }
+
+            .btn-home {
+                z-index: 10;
+            }
+        }
+
+        
+        @media (max-width: 1024px) and (orientation: landscape) {
+            .nav-container {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 15px;
+            }
+
+            #btnToggleGlobalAudio {
+                margin-right: 0 !important;
+                z-index: 10;
+            }
+
+            .logo {
+                position: static;
+                transform: none;
+                margin-right: auto !important;
+                
+                z-index: 10;
+            }
+
+            #userIdentityContainer {
+                margin-left: 0 !important;
+                
+                z-index: 10;
+            }
+
+            .btn-home {
+                z-index: 10;
+            }
+        }
+
+        
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+            .nav-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            #btnToggleGlobalAudio {
+                margin-right: 0 !important;
+                z-index: 10;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                margin: 0;
+                z-index: 5;
+            }
+
+            #userIdentityContainer {
+                margin-left: auto !important;
+                z-index: 10;
+            }
+
+            .btn-home {
+                z-index: 10;
+            }
+        }
+
+        
+        .welcome-section h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            color: #FFFFFF;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: bounceTitle 3s ease-in-out infinite;
+        }
+
+        @keyframes bounceTitle {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+        }
+
+        .welcome-section p {
+            font-size: 1.3rem;
+            color: #FFFFFF;
+            font-weight: 600;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            margin-top: 5px;
+        }
+
+        
+        .game-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 1.1fr 0.9fr;
+            gap: 15px;
+            margin: 30px auto;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        
+        .column-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 4px solid rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            min-height: 520px;
+            box-sizing: border-box;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .column-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 22px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 15px;
+            border-radius: 18px;
+        }
+
+        
+        .column-kebutuhan .column-title {
+            background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.2);
+        }
+
+        .column-keinginan .column-title {
+            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.2);
+        }
+
+        .column-choices .column-title {
+            background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%);
+            box-shadow: 0 4px 10px rgba(155, 89, 182, 0.2);
+        }
+
+        .slots-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        
+        .drop-slot {
+            background: rgba(255, 255, 255, 0.6);
+            border: 3px dashed #BDC3C7;
+            border-radius: 20px;
+            min-height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            padding: 8px;
+            box-sizing: border-box;
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .column-kebutuhan .drop-slot {
+            border-color: #AED6F1;
+        }
+
+        .column-keinginan .drop-slot {
+            border-color: #FFE0B2;
+        }
+
+        
+        .drop-slot.correct {
+            background: #E8F8F5;
+            border: 3px solid #2ECC71;
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.15);
+            transform: scale(1.02);
+        }
+
+        
+        .drop-slot.wrong {
+            background: #FDEDEC;
+            border: 3px solid #E74C3C;
+            box-shadow: 0 6px 15px rgba(231, 76, 60, 0.15);
+            transform: scale(1.02);
+        }
+
+        
+        .drop-slot.hovered {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: #3498DB;
+            transform: scale(1.04);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .column-keinginan .drop-slot.hovered {
+            border-color: #E67E22;
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.2);
+        }
+
+        .slot-label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #7F8C8D;
+            pointer-events: none;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: none;
+        }
+
+        
+        .choices-scroll {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            position: relative;
+            border-radius: 25px;
+            border: 3px dashed #D7BDE2;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .choices-scroll.hovered {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: #9B59B6;
+            box-shadow: 0 6px 15px rgba(155, 89, 182, 0.2);
+        }
+
+        
+        #choices-container .draggable-card {
+            display: none;
+        }
+
+        #choices-container .draggable-card:first-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 280px;
+            animation: slideUpDeck 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideUpDeck {
+            from {
+                transform: translateY(40px) scale(0.85);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        
+        .draggable-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 16px;
+            font-weight: 700;
+            color: #2C3E50;
+            cursor: grab;
+            user-select: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 3px solid #ECEFF1;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.1), box-shadow 0.2s, border-color 0.2s, background 0.2s;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            box-sizing: border-box;
+            touch-action: none;
+            
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .draggable-card .card-emoji {
+            font-size: 2.8rem;
+            filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.15));
+            transition: transform 0.2s;
+        }
+
+        .draggable-card:hover {
+            transform: translateY(-4px) rotate(1deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border-color: #9B59B6;
+        }
+
+        .draggable-card:hover .card-emoji {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .draggable-card:active {
+            cursor: grabbing;
+        }
+
+        
+        .draggable-card.selected {
+            border-color: #9B59B6;
+            box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.25);
+            background: #FDF7FF;
+            transform: scale(1.04) rotate(-1deg);
+        }
+
+        
+        .draggable-card.dragging {
+            opacity: 0.95;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+            border-color: #9B59B6;
+            transform: scale(1.08) rotate(3deg) !important;
+            border: 3px solid #9B59B6 !important;
+            background: #FFFFFF !important;
+            color: #2C3E50 !important;
+            padding: 16px !important;
+            border-radius: 20px !important;
+        }
+
+        
+        .drop-slot .draggable-card {
+            box-shadow: none;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .drop-slot .draggable-card .card-emoji {
+            font-size: 1.8rem;
+            margin-right: 2px;
+        }
+
+        .drop-slot .draggable-card .card-text {
+            font-size: 0.95rem;
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .drop-slot .draggable-card:hover {
+            transform: none;
+        }
+
+        
+        .draggable-card.locked {
+            cursor: default;
+            color: #1E8449;
+            text-shadow: none;
+            pointer-events: none;
+        }
+
+        
+        .draggable-card.wrong-item {
+            cursor: grab;
+            pointer-events: auto;
+        }
+
+        .drop-slot.wrong .draggable-card .card-text {
+            text-decoration: line-through;
+            color: #C0392B;
+        }
+
+        
+        .feedback-banner {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+            opacity: 0;
+            font-family: 'Fredoka', sans-serif;
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feedback-banner.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .feedback-banner.success {
+            background: #2ECC71;
+            border: 3px solid #FFFFFF;
+        }
+
+        .feedback-banner.error {
+            background: #E74C3C;
+            border: 3px solid #FFFFFF;
+        }
+
+        
+        @media (max-width: 992px) {
+            .game-layout {
+                gap: 12px;
+                margin: 20px auto;
+                grid-template-columns: 1.1fr 1.1fr 0.9fr;
+            }
+
+            .column-container {
+                padding: 12px;
+                min-height: 380px;
+                border-radius: 20px;
+                border-width: 3px;
+            }
+
+            .column-title {
+                font-size: 1.1rem !important;
+                margin-bottom: 10px;
+                padding: 6px 10px !important;
+                border-radius: 10px !important;
+            }
+
+            .slot-label {
+                font-size: 0.75rem;
+            }
+
+            .drop-slot {
+                min-height: 50px;
+                border-radius: 15px;
+                border-width: 2px;
+            }
+
+            .draggable-card {
+                font-size: 0.75rem;
+                padding: 8px;
+                border-radius: 12px;
+                gap: 4px;
+            }
+
+            .draggable-card .card-emoji {
+                font-size: 1.8rem;
+            }
+
+            .drop-slot .draggable-card .card-emoji {
+                font-size: 1.2rem;
+            }
+
+            .drop-slot .draggable-card .card-text {
+                font-size: 0.75rem;
+            }
+
+            .choices-scroll {
+                min-height: 120px;
+                border-radius: 15px;
+                border-width: 2px;
+            }
+
+            #choices-container .draggable-card:first-child {
+                max-width: 100%;
+            }
+
+            .feedback-banner {
+                font-size: 1.1rem;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-layout {
+                gap: 6px;
+            }
+
+            .column-container {
+                padding: 6px;
+                min-height: 330px;
+                border-radius: 12px;
+                border-width: 2px;
+            }
+
+            .column-title {
+                font-size: 0.8rem !important;
+                margin-bottom: 8px;
+                padding: 4px 6px !important;
+                border-radius: 8px !important;
+            }
+
+            .slot-label {
+                font-size: 0.65rem;
+            }
+
+            .drop-slot {
+                min-height: 42px;
+                border-radius: 10px;
+                border-width: 2px;
+            }
+
+            .draggable-card {
+                font-size: 0.65rem;
+                padding: 5px;
+                border-radius: 8px;
+                border-width: 1px;
+            }
+
+            .draggable-card .card-emoji {
+                font-size: 1.4rem;
+            }
+
+            .drop-slot .draggable-card .card-emoji {
+                font-size: 0.95rem;
+            }
+
+            .drop-slot .draggable-card .card-text {
+                font-size: 0.6rem;
+            }
+
+            .choices-scroll {
+                min-height: 95px;
+                border-radius: 10px;
+                border-width: 2px;
+            }
+        }
+
+        
+        @media (max-width: 1024px) and (orientation: landscape) {
+            .nav-container {
+                position: relative !important;
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                padding: 5px 15px !important;
+            }
+
+            .logo {
+                position: absolute !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                margin: 0 !important;
+                font-size: 1.4rem !important;
+                text-align: center !important;
+                z-index: 5 !important;
+                width: auto !important;
+                order: initial !important;
+            }
+
+            .btn-home {
+                order: initial !important;
+                padding: 5px 12px !important;
+                font-size: 0.8rem !important;
+                margin: 0 !important;
+                z-index: 10 !important;
+            }
+
+            #btnToggleGlobalAudio {
+                order: initial !important;
+                margin: 0 !important;
+                font-size: 0.75rem !important;
+                padding: 5px 10px !important;
+                border-radius: 15px !important;
+                z-index: 10 !important;
+                margin-right: 0 !important;
+            }
+
+            #userIdentityContainer {
+                order: initial !important;
+                width: auto !important;
+                margin: 0 !important;
+                margin-left: auto !important;
+                margin-right: 10px !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                border-radius: 12px !important;
+                padding: 4px 8px !important;
+                gap: 5px !important;
+                z-index: 10 !important;
+            }
+
+            #userIdentityContainer>div {
+                display: none !important;
+            }
+
+            #userIdentityContainer>button {
+                font-size: 0.75rem !important;
+                padding: 4px 10px !important;
+                margin: 0 !important;
+                box-shadow: 0 2px 0 #C0392B !important;
+                border-radius: 10px !important;
+            }
+
+            .welcome-section {
+                margin: 2px 0 5px 0 !important;
+            }
+
+            .welcome-section h1 {
+                font-size: 1.3rem !important;
+                margin: 0 !important;
+            }
+
+            .welcome-section p {
+                display: none !important;
+            }
+
+            .game-layout {
+                gap: 12px !important;
+                margin: 5px auto !important;
+            }
+
+            .column-container {
+                padding: 10px !important;
+                min-height: 380px !important;
+                height: 380px !important;
+                border-radius: 18px !important;
+                border-width: 3px !important;
+            }
+
+            .column-title {
+                font-size: 0.95rem !important;
+                margin-bottom: 8px !important;
+                padding: 5px 8px !important;
+                border-radius: 10px !important;
+            }
+
+            .slots-container {
+                gap: 6px !important;
+            }
+
+            .drop-slot {
+                min-height: 44px !important;
+                border-radius: 12px !important;
+                border-width: 2px !important;
+                padding: 4px !important;
+            }
+
+            .slot-label {
+                font-size: 0.7rem !important;
+            }
+
+            .draggable-card {
+                font-size: 0.75rem !important;
+                padding: 8px !important;
+                border-radius: 12px !important;
+                border-width: 2px !important;
+                gap: 4px !important;
+            }
+
+            .draggable-card .card-emoji {
+                font-size: 1.6rem !important;
+            }
+
+            .drop-slot .draggable-card .card-emoji {
+                font-size: 1.1rem !important;
+            }
+
+            .drop-slot .draggable-card .card-text {
+                font-size: 0.7rem !important;
+            }
+
+            .choices-scroll {
+                min-height: 180px !important;
+                border-radius: 18px !important;
+                border-width: 3px !important;
+                padding: 10px !important;
+            }
+
+            #choices-container .draggable-card:first-child {
+                max-width: 100% !important;
+                padding: 10px !important;
+            }
+        }
+
+        
+        #landscape-warning {
+            display: none !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background-color: #2C3E50 !important;
+            color: white !important;
+            z-index: 999999 !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+        }
+
+        #landscape-warning .phone-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: rotatePhone 2s infinite ease-in-out;
+        }
+
+        @keyframes rotatePhone {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(-90deg);
+            }
+
+            100% {
+                transform: rotate(-90deg);
+            }
+        }
+
+        @media screen and (max-width: 768px) and (orientation: portrait) {
+            #landscape-warning {
+                display: flex !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <div id="landscape-warning">
+        <div class="phone-icon">📱</div>
+        <h2 style="margin-bottom: 15px;">Putar Layar HP Kamu!</h2>
+        <p style="font-size: 1.1rem; line-height: 1.5;">Game PilahKu ini didesain khusus untuk tampilan mendatar
+            (Landscape) agar lebih seru dan jelas.</p>
+        <button id="btnForceLandscape"
+            style="display: inline-block; padding: 15px 30px; font-size: 1.2rem; background: #8E44AD; color: white; border: none; border-radius: 30px; margin-top: 20px; cursor: pointer; box-shadow: 0 5px 0 #732D91; font-weight: bold;">Putar
+            Layar (Layar Penuh)</button>
+    </div>
+
+    
+    <nav class="student-nav">
+        <div class="container nav-container">
+            <div class="logo">Saku Pintar</div>
+            <a href="menu-belajar.html" class="btn btn-home">Kembali</a>
+        </div>
+    </nav>
+
+    
+    <main class="container">
+        <header class="welcome-section text-center">
+            <h1>Pilah Aku</h1>
+            <p>Kelompokkan stiker kegiatan di kanan ke dalam kotak Kebutuhan atau Keinginan!</p>
+        </header>
+
+        
+        <div id="game-wrapper" style="width: 100%; position: relative;">
+            <div id="game-container" style="width: 1000px; margin: 0 auto; transition: transform 0.2s;">
+                <div class="game-layout">
+                    
+                    <div class="column-container column-kebutuhan">
+                        <h2 class="column-title">Kebutuhan (Kb)</h2>
+                        <div class="slots-container" id="slots-kebutuhan">
+                            
+                        </div>
+                    </div>
+
+                    
+                    <div class="column-container column-keinginan">
+                        <h2 class="column-title">Keinginan (Ki)</h2>
+                        <div class="slots-container" id="slots-keinginan">
+                            
+                        </div>
+                    </div>
+
+                    
+                    <div class="column-container column-choices">
+                        <h2 class="column-title">Pilihan</h2>
+                        <div class="choices-scroll" id="choices-container">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <div id="feedback-banner" class="feedback-banner"></div>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" defer></script>
+    <script src="../shared/js/firebase-db.js" defer></script>
+    <script src="../shared/js/presence-tracker.js" defer></script>
+
+    
+    <script src="../shared/js/utils.js"></script>
+
+    <script>
+        
+        const items = [
+            { id: 1, text: "Menyiapkan Kebutuhan Keluarga di Rumah", emoji: "🏠", category: "kebutuhan" },
+            { id: 2, text: "Membeli Bahan Makanan Pokok", emoji: "🌾", category: "kebutuhan" },
+            { id: 3, text: "Membayar Tagihan Listrik dan Air", emoji: "⚡", category: "kebutuhan" },
+            { id: 4, text: "Membeli Buku Tulis untuk Belajar", emoji: "📖", category: "kebutuhan" },
+            { id: 5, text: "Membeli Pensil untuk Menulis", emoji: "✏️", category: "kebutuhan" },
+            { id: 6, text: "Menginginkan Aneka Camilan", emoji: "🍪", category: "keinginan" },
+            { id: 7, text: "Menginginkan Sepatu Model Terbaru", emoji: "👟", category: "keinginan" },
+            { id: 8, text: "Menginginkan Sepeda Baru", emoji: "🚲", category: "keinginan" }
+        ];
+
+        let isDragging = false;
+        let activeCard = null;
+        let selectedCard = null; 
+        let startX = 0;
+        let startY = 0;
+        let initialX = 0;
+        let initialY = 0;
+        let feedbackTimeout = null;
+
+        const kebutuhanContainer = document.getElementById('slots-kebutuhan');
+        const keinginanContainer = document.getElementById('slots-keinginan');
+        const choicesContainer = document.getElementById('choices-container');
+        const banner = document.getElementById('feedback-banner');
+
+        
+        function initGame() {
+            
+            kebutuhanContainer.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'drop-slot';
+                slot.dataset.category = 'kebutuhan';
+                slot.innerHTML = `<span class="slot-label">Slot Kebutuhan ${i + 1}</span>`;
+                kebutuhanContainer.appendChild(slot);
+            }
+
+            
+            keinginanContainer.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'drop-slot';
+                slot.dataset.category = 'keinginan';
+                slot.innerHTML = `<span class="slot-label">Slot Keinginan ${i + 1}</span>`;
+                keinginanContainer.appendChild(slot);
+            }
+
+            
+            choicesContainer.innerHTML = '';
+            const shuffledItems = shuffleArray([...items]);
+            shuffledItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'draggable-card';
+                card.dataset.id = item.id;
+                card.dataset.category = item.category;
+                card.dataset.emoji = item.emoji;
+                card.innerHTML = `
+                    <span class="card-emoji">${item.emoji}</span>
+                    <span class="card-text">${item.text}</span>
+                `;
+                choicesContainer.appendChild(card);
+            });
+        }
+
+        
+        function showFeedback(message, type) {
+            banner.textContent = message;
+            banner.className = 'feedback-banner';
+            banner.classList.add(type);
+            banner.classList.add('show');
+
+            if (feedbackTimeout) clearTimeout(feedbackTimeout);
+            feedbackTimeout = setTimeout(() => {
+                banner.classList.remove('show');
+            }, 3000);
+        }
+
+        
+        function returnToChoices(card) {
+            card.style.position = 'static';
+            card.style.width = '100%';
+            card.style.height = 'auto';
+            card.style.left = 'auto';
+            card.style.top = 'auto';
+            card.style.zIndex = 'auto';
+            card.style.pointerEvents = 'auto';
+            card.style.cursor = 'grab';
+            card.style.transform = 'none'; 
+            card.style.transformOrigin = 'initial';
+
+            
+            const emoji = card.dataset.emoji;
+            const text = card.querySelector('.card-text').textContent;
+            card.innerHTML = `
+                <span class="card-emoji">${emoji}</span>
+                <span class="card-text">${text}</span>
+            `;
+            card.className = 'draggable-card';
+
+            choicesContainer.appendChild(card);
+        }
+
+        
+        function putInSlotCorrect(card, slot) {
+            slot.innerHTML = ''; 
+            slot.appendChild(card);
+
+            card.style.position = 'static';
+            card.style.width = '100%';
+            card.style.height = '100%';
+            card.style.left = 'auto';
+            card.style.top = 'auto';
+            card.style.zIndex = 'auto';
+            card.style.pointerEvents = 'none'; 
+            card.style.transform = 'none'; 
+            card.style.transformOrigin = 'initial';
+
+            card.className = 'draggable-card locked';
+            slot.className = 'drop-slot correct';
+        }
+
+        
+        function putInSlotWrong(card, slot) {
+            slot.innerHTML = ''; 
+            slot.appendChild(card);
+
+            card.style.position = 'static';
+            card.style.width = '100%';
+            card.style.height = '100%';
+            card.style.left = 'auto';
+            card.style.top = 'auto';
+            card.style.zIndex = 'auto';
+            card.style.pointerEvents = 'auto'; 
+            card.style.cursor = 'grab';
+            card.style.transform = 'none'; 
+            card.style.transformOrigin = 'initial';
+
+            card.className = 'draggable-card wrong-item';
+            slot.className = 'drop-slot wrong'; 
+        }
+
+        
+        function restoreSlotLabel(slotElement) {
+            const isKb = slotElement.dataset.category === 'kebutuhan';
+            const slots = isKb ? kebutuhanContainer.querySelectorAll('.drop-slot') : keinginanContainer.querySelectorAll('.drop-slot');
+            let index = Array.from(slots).indexOf(slotElement);
+
+            const labelText = isKb ? `Slot Kebutuhan ${index + 1}` : `Slot Keinginan ${index + 1}`;
+            slotElement.innerHTML = `<span class="slot-label">${labelText}</span>`;
+
+            slotElement.className = 'drop-slot';
+        }
+
+        
+        function checkAnswer(cardElement, slotElement) {
+            const itemCategory = cardElement.dataset.category;
+            const slotCategory = slotElement.dataset.category;
+            const itemText = cardElement.querySelector('.card-text').textContent;
+
+            
+            if (selectedCard) {
+                selectedCard.classList.remove('selected');
+                selectedCard = null;
+            }
+
+            if (itemCategory === slotCategory) {
+                
+                putInSlotCorrect(cardElement, slotElement);
+
+                
+                const audio = new Audio('../benar.mp3');
+                audio.play().catch(() => { });
+
+                const catLabel = itemCategory === 'kebutuhan' ? 'Kebutuhan' : 'Keinginan';
+                showFeedback(`Jawaban kamu benar! "${itemText}" adalah ${catLabel}. 👍`, 'success');
+
+                checkGameFinished();
+            } else {
+                
+                putInSlotWrong(cardElement, slotElement);
+
+                
+                const audio = new Audio('../salah.mp3');
+                audio.play().catch(() => { });
+
+                const targetLabel = slotCategory === 'kebutuhan' ? 'Kebutuhan' : 'Keinginan';
+                showFeedback(`Jawaban kamu salah! "${itemText}" bukan ${targetLabel}. ❌`, 'error');
+            }
+        }
+
+        
+        function checkGameFinished() {
+            const totalSlots = document.querySelectorAll('.drop-slot').length;
+            const correctSlots = document.querySelectorAll('.drop-slot.correct').length;
+
+            if (correctSlots === totalSlots) {
+                
+                launchConfetti();
+
+                setTimeout(() => {
+                    Swal.fire({
+                        title: 'Luar Biasa! Kamu Hebat! 🏆🎉',
+                        text: 'Kamu berhasil mencocokkan semua Kebutuhan dan Keinginan dengan tepat! Belajar finansial jadi makin seru!',
+                        imageUrl: 'aset student/icon-kekei.png',
+                        imageWidth: 120,
+                        imageHeight: 'auto',
+                        imageAlt: 'Robot Detektif',
+                        confirmButtonText: 'SELESAI!',
+                        confirmButtonColor: '#2ECC71',
+                        background: 'linear-gradient(135deg, #E8F8F5 0%, #D1F2EB 100%)',
+                        backdrop: 'rgba(46, 204, 113, 0.4)',
+                        customClass: {
+                            popup: 'kid-swal-popup',
+                            title: 'kid-swal-title',
+                            htmlContainer: 'kid-swal-html-container',
+                            confirmButton: 'kid-swal-confirm'
+                        }
+                    }).then(() => {
+                        if (typeof logActivity === 'function') {
+                            logActivity('🎮 Sukses menyelesaikan game Mix & Match (Kebutuhan & Keinginan) dengan nilai sempurna!', 100);
+                        }
+                        window.location.href = 'menu-belajar.html';
+                    });
+                }, 800);
+            }
+        }
+
+        
+        function launchConfetti() {
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        
+
+        let autoScrollInterval = null;
+        let scrollSpeedX = 0;
+        let scrollSpeedY = 0;
+
+        function startAutoScroll() {
+            if (autoScrollInterval) return;
+            autoScrollInterval = setInterval(() => {
+                if (!isDragging) {
+                    stopAutoScroll();
+                    return;
+                }
+                if (scrollSpeedX !== 0 || scrollSpeedY !== 0) {
+                    window.scrollBy(scrollSpeedX, scrollSpeedY);
+                }
+            }, 16); 
+        }
+
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+            scrollSpeedX = 0;
+            scrollSpeedY = 0;
+        }
+
+        function startDrag(e) {
+            const card = e.target.closest('.draggable-card');
+            if (!card || card.classList.contains('locked')) return;
+
+            
+            if (selectedCard && selectedCard !== card) {
+                selectedCard.classList.remove('selected');
+            }
+            selectedCard = card;
+            card.classList.add('selected');
+
+            isDragging = true;
+            activeCard = card;
+            previousParent = card.parentElement;
+
+            
+            card.classList.remove('wrong-item');
+
+            const event = e.type.includes('touch') ? e.touches[0] : e;
+            startX = event.clientX;
+            startY = event.clientY;
+
+            const rect = card.getBoundingClientRect();
+            initialX = rect.left;
+            initialY = rect.top;
+
+            
+            document.body.appendChild(card);
+
+            
+            if (previousParent && previousParent.classList.contains('drop-slot')) {
+                restoreSlotLabel(previousParent);
+            }
+
+            
+            let currentScale = 1;
+            const container = document.getElementById('game-container');
+            if (container) {
+                const transformStyle = window.getComputedStyle(container).transform;
+                if (transformStyle && transformStyle !== 'none') {
+                    const matrixValues = transformStyle.match(/matrix\((.+)\)/);
+                    if (matrixValues) {
+                        currentScale = parseFloat(matrixValues[1].split(',')[0]);
+                    }
+                }
+            }
+            card.dataset.dragScale = currentScale;
+
+            
+            card.style.transition = 'none';
+            card.style.position = 'fixed';
+            card.style.width = `${rect.width / currentScale}px`;
+            card.style.height = `${rect.height / currentScale}px`;
+            card.style.left = `${initialX}px`;
+            card.style.top = `${initialY}px`;
+            card.style.transform = `scale(${currentScale})`;
+            card.style.transformOrigin = 'left top';
+            card.style.zIndex = '1000';
+            card.style.pointerEvents = 'none'; 
+            card.style.cursor = 'grabbing';
+            card.classList.add('dragging');
+
+            document.addEventListener('mousemove', dragMove);
+            document.addEventListener('touchmove', dragMove, { passive: false });
+            document.addEventListener('mouseup', dragEnd);
+            document.addEventListener('touchend', dragEnd);
+        }
+
+        function dragMove(e) {
+            if (!isDragging || !activeCard) return;
+
+            if (e.cancelable) e.preventDefault(); 
+
+            const event = e.type.includes('touch') ? e.touches[0] : e;
+            const dx = event.clientX - startX;
+            const dy = event.clientY - startY;
+
+            const newX = initialX + dx;
+            const newY = initialY + dy;
+
+            activeCard.style.left = `${newX}px`;
+            activeCard.style.top = `${newY}px`;
+
+            const clientX = event.clientX;
+            const clientY = event.clientY;
+
+            
+            const edgeThreshold = 80; 
+            const maxSpeed = 10;      
+
+            
+            if (clientX > window.innerWidth - edgeThreshold) {
+                scrollSpeedX = maxSpeed;
+            } else if (clientX < edgeThreshold) {
+                scrollSpeedX = -maxSpeed;
+            } else {
+                scrollSpeedX = 0;
+            }
+
+            
+            if (clientY > window.innerHeight - edgeThreshold) {
+                scrollSpeedY = maxSpeed;
+            } else if (clientY < edgeThreshold) {
+                scrollSpeedY = -maxSpeed;
+            } else {
+                scrollSpeedY = 0;
+            }
+
+            if (scrollSpeedX !== 0 || scrollSpeedY !== 0) {
+                startAutoScroll();
+            } else {
+                stopAutoScroll();
+            }
+
+            
+            document.querySelectorAll('.drop-slot, .choices-scroll').forEach(s => s.classList.remove('hovered'));
+
+            const hoveredEl = document.elementFromPoint(clientX, clientY);
+            if (hoveredEl) {
+                const slot = hoveredEl.closest('.drop-slot');
+                const choices = hoveredEl.closest('#choices-container');
+                if (slot && !slot.querySelector('.draggable-card')) {
+                    slot.classList.add('hovered');
+                } else if (choices) {
+                    choices.classList.add('hovered');
+                }
+            }
+        }
+
+        function dragEnd(e) {
+            if (!isDragging || !activeCard) return;
+            isDragging = false;
+            stopAutoScroll();
+
+            document.removeEventListener('mousemove', dragMove);
+            document.removeEventListener('touchmove', dragMove);
+            document.removeEventListener('mouseup', dragEnd);
+            document.removeEventListener('touchend', dragEnd);
+
+            const event = e.type === 'touchend' ? e.changedTouches[0] : e;
+            const clientX = event.clientX;
+            const clientY = event.clientY;
+
+            document.querySelectorAll('.drop-slot, .choices-scroll').forEach(s => s.classList.remove('hovered'));
+
+            
+            const releasedEl = document.elementFromPoint(clientX, clientY);
+            let dropped = false;
+
+            if (releasedEl) {
+                const slot = releasedEl.closest('.drop-slot');
+                const choices = releasedEl.closest('#choices-container');
+
+                if (slot && !slot.querySelector('.draggable-card')) {
+                    
+                    dropped = true;
+                    checkAnswer(activeCard, slot);
+                } else if (choices) {
+                    
+                    dropped = true;
+                    returnToChoices(activeCard);
+                    playClickSound();
+                }
+            }
+
+            
+            if (!dropped) {
+                activeCard.classList.remove('selected');
+                if (selectedCard === activeCard) selectedCard = null;
+
+                if (previousParent && previousParent.classList.contains('drop-slot')) {
+                    
+                    const isCorrect = activeCard.dataset.category === previousParent.dataset.category;
+                    if (isCorrect) {
+                        putInSlotCorrect(activeCard, previousParent);
+                    } else {
+                        putInSlotWrong(activeCard, previousParent);
+                    }
+                } else {
+                    returnToChoices(activeCard);
+                }
+            }
+
+            activeCard.classList.remove('dragging');
+            activeCard.style.pointerEvents = 'auto';
+            activeCard = null;
+        }
+
+        
+
+        document.body.addEventListener('click', (e) => {
+            const slot = e.target.closest('.drop-slot');
+            const choices = e.target.closest('#choices-container');
+
+            if (selectedCard) {
+                if (slot && !slot.querySelector('.draggable-card')) {
+                    const oldParent = selectedCard.parentElement;
+                    checkAnswer(selectedCard, slot);
+
+                    if (oldParent && oldParent.classList.contains('drop-slot')) {
+                        restoreSlotLabel(oldParent);
+                    }
+                    return;
+                } else if (choices) {
+                    const oldParent = selectedCard.parentElement;
+                    returnToChoices(selectedCard);
+                    playClickSound();
+                    selectedCard.classList.remove('selected');
+                    selectedCard = null;
+
+                    if (oldParent && oldParent.classList.contains('drop-slot')) {
+                        restoreSlotLabel(oldParent);
+                    }
+                    return;
+                }
+            }
+
+            
+            if (!e.target.closest('.draggable-card') && !e.target.closest('.drop-slot')) {
+                if (selectedCard) {
+                    selectedCard.classList.remove('selected');
+                    selectedCard = null;
+                }
+            }
+        });
+
+        
+        choicesContainer.addEventListener('mousedown', startDrag);
+        choicesContainer.addEventListener('touchstart', startDrag, { passive: false });
+
+        
+        kebutuhanContainer.addEventListener('mousedown', startDrag);
+        kebutuhanContainer.addEventListener('touchstart', startDrag, { passive: false });
+        keinginanContainer.addEventListener('mousedown', startDrag);
+        keinginanContainer.addEventListener('touchstart', startDrag, { passive: false });
+
+        
+        function adjustGameScale() {
+            const container = document.getElementById('game-container');
+            if (!container) return;
+
+            const wrapper = container.parentElement;
+            const containerWidth = wrapper.clientWidth;
+
+            
+            const isLandscape = window.innerHeight < window.innerWidth || window.innerHeight < 600;
+            const baseHeight = isLandscape ? 420 : 580;
+
+            
+            let heightOffset = 180;
+            if (isLandscape) {
+                const nav = document.querySelector('.student-nav');
+                const header = document.querySelector('.welcome-section');
+                const navHeight = nav ? nav.offsetHeight : 0;
+                const headerHeight = header ? header.offsetHeight : 0;
+                heightOffset = navHeight + headerHeight + 25; 
+            }
+
+            
+            const availableHeight = window.innerHeight - heightOffset;
+
+            const scaleX = (containerWidth - 20) / 1000;
+            const scaleY = availableHeight / baseHeight;
+
+            let scale = Math.min(scaleX, scaleY);
+            if (scale > 1) scale = 1; 
+
+            
+            if (scale < 1) {
+                container.style.transform = `scale(${scale})`;
+                container.style.transformOrigin = 'center top';
+                wrapper.style.height = `${baseHeight * scale}px`;
+            } else {
+                container.style.transform = 'none';
+                wrapper.style.height = 'auto';
+            }
+        }
+
+        
+        window.addEventListener('resize', () => {
+            adjustGameScale();
+            setTimeout(adjustGameScale, 100);
+            setTimeout(adjustGameScale, 300);
+        });
+        window.addEventListener('load', adjustGameScale);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(adjustGameScale, 100);
+            setTimeout(adjustGameScale, 300);
+            setTimeout(adjustGameScale, 500);
+        });
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initGame();
+            adjustGameScale();
+
+            
+            const btnForceLandscape = document.getElementById('btnForceLandscape');
+            const rotateOverlay = document.getElementById('landscape-warning');
+
+            async function forceLandscapeMode() {
+                try {
+                    if (document.documentElement.requestFullscreen) {
+                        await document.documentElement.requestFullscreen();
+                    } else if (document.documentElement.webkitRequestFullscreen) {
+                        await document.documentElement.webkitRequestFullscreen();
+                    }
+                    if (screen.orientation && screen.orientation.lock) {
+                        await screen.orientation.lock('landscape');
+                    }
+                } catch (e) {
+                    console.log("Auto-rotate gagal:", e);
+                    if (window.innerHeight > window.innerWidth) {
+                        const overlayText = rotateOverlay.querySelector('h2');
+                        const overlayDesc = rotateOverlay.querySelector('p');
+                        if (overlayText && overlayDesc) {
+                            overlayText.innerHTML = "Gagal Memutar Layar 🔒";
+                            overlayDesc.innerHTML = "Sistem HP Anda memblokir rotasi otomatis. <b>Matikan fitur 'Kunci Orientasi' di pengaturan HP Anda</b>, lalu putar HP secara manual!";
+                        }
+                        if (btnForceLandscape) btnForceLandscape.style.display = 'none';
+                    }
+                }
+            }
+
+            if (btnForceLandscape) {
+                btnForceLandscape.addEventListener('click', forceLandscapeMode);
+            }
+
+            setTimeout(() => {
+                if (typeof logActivity === 'function') {
+                    logActivity('🎮 Mulai bermain game Mix and Match');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

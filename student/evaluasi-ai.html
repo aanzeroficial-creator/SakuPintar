@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <script>
+if (!sessionStorage.getItem('siswaAuth')) window.location.replace('../login-siswa.html');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Evaluasi Cerdas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <style>
+        body {
+            background-color: #2C3E50;
+            background-image: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            font-family: 'Fredoka', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .ai-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 900px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .kategori-kebutuhan { background: #27AE60; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; }
+        .kategori-keinginan { background: #E67E22; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; }
+        .btn-lanjut-aktif { background: #2ECC71 !important; cursor: pointer !important; box-shadow: 0 5px 15px rgba(46,204,113,0.5); }
+        .btn-lanjut-aktif:hover { transform: scale(1.05); }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        
+        @media screen and (max-width: 768px), screen and (max-height: 500px) {
+            .ai-panel {
+                width: 95% !important;
+                max-width: 650px !important;
+                padding: 15px 20px !important;
+                max-height: 95vh !important;
+            }
+            .ai-panel h2 {
+                font-size: 1.8rem !important;
+            }
+            .ai-panel p {
+                font-size: 1rem !important;
+            }
+            table th, table td {
+                padding: 8px 10px !important;
+                font-size: 0.9rem !important;
+            }
+            #nilaiScoreContainer {
+                gap: 10px !important;
+                margin: 10px auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <button onclick="window.location.href='index.html'" style="position: absolute; top: 20px; left: 20px; background: #E74C3C; color: white; border: none; padding: 10px 20px; font-size: 1.1rem; border-radius: 10px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2); z-index: 100; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        ⬅️ Kembali ke Menu
+    </button>
+
+    <div class="ai-panel">
+        <h2 style="color: #2C3E50; font-size: 2.5rem; margin-bottom: 10px; text-transform: uppercase;">📊 Evaluasi Keputusan Belanja</h2>
+        <p style="color: #7F8C8D; font-size: 1.2rem; margin-bottom: 20px;">Menganalisis keputusan belanjamu berdasarkan Misi Cerita...</p>
+
+        
+        <div id="nilaiScoreContainer" style="display: none; justify-content: center; align-items: center; gap: 20px; margin: 15px auto 20px auto; max-width: 500px; flex-wrap: wrap;">
+            
+            <div style="background: #EBF5FB; border: 2px solid #3498DB; border-radius: 15px; padding: 10px 20px; text-align: center; box-shadow: 0 5px 15px rgba(52,152,219,0.1); flex: 1; min-width: 140px;">
+                <span style="font-size: 0.9rem; color: #7F8C8D; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">Nilai Belanja</span>
+                <span id="evalNilai" style="font-size: 2.8rem; font-weight: 900; color: #2980B9; font-family: 'Fredoka', 'Segoe UI', sans-serif;">-</span>
+            </div>
+            
+            <div style="background: #FAFDFB; border: 2px solid #2ECC71; border-radius: 15px; padding: 10px 20px; text-align: left; box-shadow: 0 5px 15px rgba(46,204,113,0.1); flex: 1.2; min-width: 180px;">
+                <span style="font-size: 0.9rem; color: #7F8C8D; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">Rincian Jawaban</span>
+                <div style="font-size: 1rem; line-height: 1.4; color: #2C3E50; font-family: 'Fredoka', 'Segoe UI', sans-serif;">
+                    <p style="margin: 3px 0;">✅ Keputusan Benar: <strong id="evalBenarCount" style="color: #27AE60;">-</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="aiLoading" style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
+            <div style="font-size: 4rem; animation: spin 2s linear infinite;">⏳</div>
+            <p style="margin-top: 15px; font-weight: bold; color: #E67E22; font-size: 1.2rem;">Sistem sedang menganalisis keputusanmu...</p>
+        </div>
+
+        
+        <div id="aiResult" style="display: none; margin-top: 20px;">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <thead>
+                    <tr style="background: #34495E; color: white;">
+                        <th style="padding: 15px; border: 1px solid #BDC3C7;">Barang</th>
+                        <th style="padding: 15px; border: 1px solid #BDC3C7;">Kategori</th>
+                        <th style="padding: 15px; border: 1px solid #BDC3C7;">Alasan Logis</th>
+                    </tr>
+                </thead>
+                <tbody id="aiTabelBody">
+                    
+                </tbody>
+            </table>
+
+            
+            <div id="aiKeuangan" style="margin-top: 20px; background: #FFF3E0; border-left: 5px solid #E67E22; padding: 15px; text-align: left; border-radius: 5px; display: none;">
+                <h3 style="color: #D35400; margin-bottom: 5px; font-size: 1.2rem;">💡 Analisis Pengelolaan Uang</h3>
+                <p id="aiKeuanganText" style="color: #34495E; font-size: 1.1rem; line-height: 1.5; margin-bottom: 10px;"></p>
+                <div style="padding-top: 10px; border-top: 1px solid #FFE0B2; font-size: 0.9rem; color: #D35400; font-style: italic; font-family: 'Fredoka', sans-serif;">
+                    Sistem telah memeriksa keputusan belanjamu berdasarkan Misi Cerita dan Kunci Jawaban Paten yang telah diinput oleh Gurumu.
+                </div>
+            </div>
+
+            
+            <div id="kunciJawabanArea" style="margin-top: 30px; display: none;">
+                <h3 style="color: #27AE60; margin-bottom: 15px; font-size: 1.4rem; text-align: left; display: flex; align-items: center; gap: 8px;">🔑 Kunci Jawaban Resmi dari Guru</h3>
+                <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <thead>
+                        <tr style="background: #27AE60; color: white;">
+                            <th style="padding: 12px; border: 1px solid #BDC3C7; text-align: left;">Nama Barang</th>
+                            <th style="padding: 12px; border: 1px solid #BDC3C7; text-align: center; width: 150px;">Kategori</th>
+                            <th style="padding: 12px; border: 1px solid #BDC3C7; text-align: left;">Alasan dari Guru</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kunciTabelBody">
+                        
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        
+        <div id="statusIzinArea" style="background: #ECF0F1; padding: 20px; border-radius: 15px; margin-top: 30px; display: none;">
+            <div id="statusIzinIcon" style="font-size: 3rem; margin-bottom: 10px;">⏳</div>
+            <h3 id="statusIzinTitle" style="color: #E67E22; margin-bottom: 5px;">Menunggu Izin Guru</h3>
+            <p id="statusIzinText" style="color: #7F8C8D; margin-bottom: 15px;">Guru sedang mengecek laporanmu di Dashboard. Mohon tunggu sebentar ya!</p>
+            <button id="btnLanjutMisi" disabled style="background: #BDC3C7; color: white; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 10px; cursor: not-allowed; transition: all 0.3s ease;">Lanjut ke Peta 🗺️</button>
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="../shared/js/firebase-db.js"></script>
+    <script src="../shared/js/presence-tracker.js"></script>
+    <script src="../shared/js/utils.js"></script>
+    
+    <script src="js/evaluasi-ai.js"></script>
+</body>
+</html>

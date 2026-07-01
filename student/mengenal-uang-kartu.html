@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script>
+        if (!sessionStorage.getItem('siswaAuth')) window.location.replace('../login-siswa.html');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Pecahan Uang | Saku Pintar</title>
+    
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <link rel="stylesheet" href="css/student-style.css">
+</head>
+
+<body>
+
+
+    <nav class="student-nav">
+        <div class="container nav-container">
+            <div class="logo">Saku Pintar</div>
+            <a href="menu-belajar.html" class="btn btn-home">Kembali</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="welcome-section text-center">
+            <h1>Apa saja Pecahan Uang Rupiah?</h1>
+            <p>Ayo klik kartu di bawah ini untuk melihat ciri-cirinya!</p>
+        </header>
+
+        
+        <section class="cards-section">
+            
+            <div class="cards-grid" id="moneyCardsContainer">
+                
+            </div>
+
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="mengenal-uang.html" class="btn btn-student"
+                    style="background-color: #E74C3C; box-shadow: 0 6px 0 #C0392B; margin-right: 15px;">⬅️ Kembali ke
+                    Video</a>
+                <a href="flipbook.html" class="btn btn-student">Lanjut ke Flipbook ➡️</a>
+            </div>
+        </section>
+    </main>
+
+    
+    <script src="../shared/js/utils.js"></script>
+    <script src="js/mengenal-uang.js"></script>
+</body>
+
+</html>

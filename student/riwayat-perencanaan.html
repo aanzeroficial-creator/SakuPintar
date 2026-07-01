@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <script>
+if (!sessionStorage.getItem('siswaAuth')) window.location.replace('../login-siswa.html');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Rencana Belanja | Saku Pintar</title>
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <link rel="stylesheet" href="css/student-style.css">
+    <style>
+        body {
+            background-color: #F4F6F7;
+        }
+
+        .history-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .header-title {
+            text-align: center;
+            color: #2C3E50;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .history-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 8px solid #3498DB;
+            transition: transform 0.2s;
+        }
+
+        .history-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #E0E0E0;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .history-time {
+            font-size: 0.9rem;
+            color: #7F8C8D;
+            background: #F8F9F9;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .status-badge {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .status-aman { background: #E8F8F5; color: #27AE60; }
+        .status-minus { background: #FDEDEC; color: #E74C3C; }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-item {
+            background: #F4F6F7;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .summary-item h4 {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+            color: #7F8C8D;
+        }
+
+        .summary-item p {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2C3E50;
+        }
+
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: #FAFAFA;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .report-table th {
+            background: #2C3E50;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .report-table td {
+            padding: 12px;
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .report-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cat-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .cat-kebutuhan { background: #E8F8F5; color: #27AE60; border: 1px solid #27AE60; }
+        .cat-keinginan { background: #FEF9E7; color: #F39C12; border: 1px solid #F39C12; }
+
+        .plan-section {
+            margin-top: 15px;
+            padding: 15px;
+            background: #FEF9E7;
+            border-radius: 10px;
+            border-left: 4px solid #F1C40F;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #3498DB;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 600px) {
+            .summary-grid { grid-template-columns: 1fr; }
+            .history-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="student-nav">
+        <div class="container nav-container">
+            <div class="logo">Saku Pintar</div>
+        </div>
+    </nav>
+
+    <main class="container history-container">
+        <a href="index.html" class="btn-back">⬅ Kembali ke Beranda</a>
+        <h1 class="header-title" style="text-align: center; margin-bottom: 5px;">Riwayat Rencana Belanja</h1>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <img src="aset%20student/icon-rencana.png" alt="Icon Rencana" style="width: 50px; height: auto;">
+        </div>
+
+        <div id="historyListArea">
+            
+        </div>
+    </main>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="../shared/js/firebase-db.js"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const historyListArea = document.getElementById('historyListArea');
+            
+            
+            const formatRupiah = (number) => {
+                return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+            };
+
+            const siswaAuth = JSON.parse(sessionStorage.getItem('siswaAuth') || '{}');
+            const namaSiswa = siswaAuth.nama;
+
+            historyListArea.innerHTML = `<div style="text-align:center; padding: 40px; color:#7F8C8D;">Sedang memuat data riwayat dari Cloud... ☁️</div>`;
+
+            
+            
+            if (typeof getRiwayatBelanjaSiswa === 'function' && namaSiswa) {
+                try {
+                    const riwayatCloud = await getRiwayatBelanjaSiswa(namaSiswa);
+                    
+                    if (riwayatCloud.length === 0) {
+                        historyListArea.innerHTML = `
+                            <div class="empty-state">
+                                <h2 style="color: #7F8C8D;">Belum Ada Riwayat</h2>
+                                <p>Kamu belum pernah mengirim laporan Rencana Keuangan ke Gurumu.</p>
+                                <a href="perencanaan.html" class="btn btn-student" style="margin-top: 20px; display: inline-block; background: #3498DB; color: white;">Buat Rencana Baru</a>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    let htmlContent = '';
+                    riwayatCloud.forEach((item, index) => {
+                        const isAman = item.sisaUang >= 0;
+                        const statusClass = isAman ? 'status-aman' : 'status-minus';
+                        
+                        let listBarangHtml = `
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Pengeluaran</th>
+                                        <th>Kategori</th>
+                                        <th>Alasan / Kebutuhan</th>
+                                        <th>Harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        `;
+
+                        if (item.daftarPengeluaran && item.daftarPengeluaran.length > 0) {
+                            item.daftarPengeluaran.forEach(brg => {
+                                const isKebutuhan = brg.kategori && brg.kategori.toLowerCase() === 'kebutuhan';
+                                const catBg = isKebutuhan ? '#2ECC71' : '#F39C12';
+                                listBarangHtml += `
+                                    <tr>
+                                        <td><strong>${brg.nama}</strong></td>
+                                        <td><span class="badge" style="background:${catBg}; color:white; padding:2px 8px; border-radius:10px; font-size:0.8rem;">${brg.kategori}</span></td>
+                                        <td>${brg.alasan || '-'}</td>
+                                        <td style="color:#E74C3C;">${formatRupiah(brg.harga)}</td>
+                                    </tr>
+                                `;
+                            });
+                        } else {
+                            listBarangHtml += `<tr><td colspan="4" style="text-align:center; color:#7F8C8D;">Tidak ada pengeluaran dicatat.</td></tr>`;
+                        }
+                        listBarangHtml += '</tbody></table>';
+
+                        htmlContent += `
+                            <div class="history-card">
+                                <div class="history-header">
+                                    <span style="font-size: 0.9rem; color: #7F8C8D;">dY"' ${item.waktu || 'Waktu Tidak Diketahui'}</span>
+                                    <span class="history-status ${statusClass}">${item.status || 'Tidak Diketahui'}</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; margin-top: 15px; margin-bottom: 15px; background: #F8F9F9; padding: 15px; border-radius: 10px;">
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: #7F8C8D;">Total Uang Saku</div>
+                                        <div style="font-weight: bold; color: #2C3E50; font-size: 1.1rem;">${formatRupiah(item.uangJajan || 0)}</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.85rem; color: #7F8C8D;">Total Pengeluaran</div>
+                                        <div style="font-weight: bold; color: #E74C3C; font-size: 1.1rem;">${formatRupiah(item.totalPengeluaran || 0)}</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.85rem; color: #7F8C8D;">Sisa Uang</div>
+                                        <div style="font-weight: bold; color: ${isAman ? '#27AE60' : '#E74C3C'}; font-size: 1.1rem;">${formatRupiah(item.sisaUang || 0)}</div>
+                                    </div>
+                                </div>
+                                
+                                ${listBarangHtml}
+
+                                <div style="margin-top: 15px; background: #E8F8F5; padding: 15px; border-radius: 10px; border-left: 4px solid #1ABC9C;">
+                                    <strong>Rencana Sisa Uang:</strong><br>
+                                    <span style="color:#2C3E50;">${item.rencanaSisaUang || '-'}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    historyListArea.innerHTML = htmlContent;
+
+                } catch (e) {
+                    historyListArea.innerHTML = `<div style="text-align:center; color:#E74C3C;">Terjadi kesalahan saat memuat data.</div>`;
+                    console.error(e);
+                }
+            } else {
+                historyListArea.innerHTML = `<div style="text-align:center; color:#E74C3C;">Gagal terhubung ke Database.</div>`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script>
+        if (!sessionStorage.getItem('siswaAuth')) window.location.replace('../login-siswa.html');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Game Berbelanja: Belanja Kebutuhan</title>
+
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <link rel="stylesheet" href="css/kuis.css">
+    <style>
+        #mobile-rotate-overlay {
+            display: none !important;
+        }
+    </style>
+    <style>
+        .modal-rak {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-rak-content {
+            background: white;
+            width: 95%;
+            max-width: 900px;
+            height: 90%;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-rak-header {
+            background: linear-gradient(135deg, #8E44AD, #9B59B6);
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #732D91;
+        }
+
+        .modal-rak-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f4f6f7;
+        }
+
+        .shop-tabs {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px dashed #ddd;
+        }
+
+        .shop-tab {
+            padding: 12px 25px;
+            background: #fff;
+            border: 3px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            white-space: nowrap;
+            font-size: 1.1rem;
+            color: #7F8C8D;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .shop-tab:hover {
+            border-color: #3498DB;
+            color: #3498DB;
+            transform: translateY(-2px);
+        }
+
+        .shop-tab.active {
+            background: #3498DB;
+            color: white;
+            border-color: #2980B9;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.1s;
+        }
+
+        .item-card:hover {
+            transform: scale(1.05);
+            border-color: #3498DB;
+        }
+
+        .item-img {
+            width: 100%;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            color: #E67E22;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .btn-tutup-rak {
+            background: #E74C3C;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        .keranjang-visual {
+            position: absolute;
+            bottom: 50%;
+            left: 5%;
+            width: 90%;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap-reverse;
+            align-content: flex-start;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .keranjang-visual img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin: -10px;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+            transition: transform 0.2s;
+        }
+
+        .keranjang-visual img:hover {
+            transform: translateY(-10px) scale(1.1);
+            z-index: 12;
+        }
+    </style>
+</head>
+
+<body
+    style="background-image: url('../shared/assets/bg-supermarket.png'); background-size: cover; background-position: center bottom; background-repeat: no-repeat; background-attachment: fixed; background-color: #A9DFBF;">
+
+
+    <div id="rotateOverlay" style="display: none;">
+        <div class="rotate-icon">📱</div>
+        <h2>Putar Layar HP Anda!</h2>
+        <p>Game belanja ini dirancang untuk dimainkan dalam mode miring (Landscape).</p>
+        <button id="btnForceLandscape" class="btn-rotate"
+            style="display: inline-block; padding: 15px 30px; font-size: 1.2rem; background: #8E44AD; color: white; border: none; border-radius: 30px; margin-top: 20px; cursor: pointer; box-shadow: 0 5px 0 #732D91;">Putar
+            Layar (Layar Penuh)</button>
+    </div>
+
+
+    <header class="game-header" id="gameHeader" style="justify-content: space-between;">
+        <div class="header-left">
+            <a href="eksplorasi.html" class="btn-pause">🔍 Misi Misteri</a>
+            <button id="btnBukaRak"
+                style="display: none; margin-left:15px; background:#F1C40F; color:#B7950B; border:none; padding:8px 15px; border-radius:20px; font-weight:bold; cursor:pointer; font-size:1rem; box-shadow:0 2px 4px rgba(0,0,0,0.2);">🛒
+                Pergi ke Rak Toko</button>
+        </div>
+        <div class="header-center">
+            <div class="score"
+                style="background:#27AE60; color:white; border-radius:30px; padding:5px 15px; display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:bold; box-shadow:0 4px 6px rgba(0,0,0,0.2); white-space:nowrap; flex-shrink:0;">
+                Sisa Uang Saku: <span id="budgetDisplay" style="margin-left: 5px;">Memuat...</span></div>
+            <div class="timer" id="timerDisplay"
+                style="background:#E74C3C; color:white; font-weight:bold; padding:5px 15px; border-radius:30px; font-size:1rem; display:flex; align-items:center; gap:5px; box-shadow:0 4px 6px rgba(0,0,0,0.2); white-space:nowrap; flex-shrink:0;">
+                ⏱️ 02:00</div>
+        </div>
+        <div class="header-right">
+            <button id="btnSelesaiBelanja" class="btn-action"
+                style="background:#3498DB; border-color:#2980B9; color:white; padding:8px 15px; font-size:1rem; border-radius:20px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✅
+                Selesai Belanja</button>
+        </div>
+    </header>
+
+
+    <main class="game-area" id="gameArea">
+
+
+        <div class="area-kiri" style="position:relative;">
+
+            <div class="placeholder-character pembeli" style="background: transparent; box-shadow: none;">
+                <img id="pembeliImg" alt="Siswa" style="width: 100%; height: 100%; object-fit: contain;">
+                <script>
+                    const g = localStorage.getItem('genderCerita') || 'L';
+                    document.getElementById('pembeliImg').src = g === 'P' ? 'aset%20student/pembeli%20cewe.png' : 'aset%20student/9.png';
+                </script>
+            </div>
+
+            <div class="placeholder-keranjang" style="background: transparent; box-shadow: none; position:relative;">
+                <img src="aset%20student/keranjang%20belanja%202.png" alt="Keranjang"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+                <div class="keranjang-visual" id="keranjangVisual">
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="area-tengah">
+
+
+
+            <div id="panelPilihBarang"
+                style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; animation: floatPanel 3s ease-in-out infinite;">
+                <img id="btnRaksasaRak" src="aset student/btn-buka-rak.png" alt="Masuk ke Rak Toko">
+                <style>
+                    @keyframes floatPanel {
+
+                        0%,
+                        100% {
+                            transform: translateY(0);
+                        }
+
+                        50% {
+                            transform: translateY(-15px);
+                        }
+                    }
+
+                    #btnRaksasaRak {
+                        width: 260px;
+                        height: auto;
+                        cursor: pointer;
+                        transition: transform 0.2s ease, filter 0.2s ease;
+                        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+                    }
+
+                    #btnRaksasaRak:hover {
+                        transform: scale(1.05);
+                        filter: drop-shadow(0 15px 25px rgba(241, 196, 15, 0.5)) brightness(1.05);
+                    }
+
+                    #btnRaksasaRak:active {
+                        transform: scale(0.95);
+                    }
+                </style>
+            </div>
+
+            <div id="panelDompet" class="dompet-container"
+                style="background: transparent; border: none; box-shadow: none; padding: 0; position: relative; display: none; opacity: 0; transform: scale(0.8); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+
+
+                <img src="aset student/dompet.png" alt="Dompet"
+                    style="width: 35vw; max-width: 400px; display: block; position: relative; z-index: 2; pointer-events: none;">
+
+
+                <div class="uang-kertas-container" style="position: absolute; top: 35%; left: 43%; z-index: 1;">
+                    <button class="uang-btn kertas k-1k" data-nominal="1000">1.000</button>
+                    <button class="uang-btn kertas k-2k" data-nominal="2000">2.000</button>
+                    <button class="uang-btn kertas k-5k" data-nominal="5000">5.000</button>
+                    <button class="uang-btn kertas k-10k" data-nominal="10000">10.000</button>
+                    <button class="uang-btn kertas k-20k" data-nominal="20000">20.000</button>
+                    <button class="uang-btn kertas k-50k" data-nominal="50000">50.000</button>
+                    <button class="uang-btn kertas k-100k" data-nominal="100000">100.000</button>
+                </div>
+
+
+                <div class="uang-koin-container"
+                    style="position: absolute; top: 58%; left: 45%; transform: translate(-50%, -50%); z-index: 3; margin: 0; width: 100%; display: flex; justify-content: center; align-items: center;">
+                    <button class="uang-btn koin k-koin-100" data-nominal="100"
+                        style="width: 100px !important; height: 100px !important; flex-shrink: 0; margin-right: -35px !important;">100</button>
+                    <button class="uang-btn koin k-koin-200" data-nominal="200"
+                        style="width: 100px !important; height: 100px !important; flex-shrink: 0;">200</button>
+                    <button class="uang-btn koin k-koin-500" data-nominal="500"
+                        style="width: 100px !important; height: 100px !important; flex-shrink: 0; margin-left: -35px !important;">500</button>
+                    <button class="uang-btn koin k-koin-1000" data-nominal="1000"
+                        style="width: 100px !important; height: 100px !important; flex-shrink: 0; margin-left: -35px !important;">1.000</button>
+                </div>
+            </div>
+
+
+            <button id="btnResetUang" class="btn-action reset-uang"
+                style="display: none; margin-top: 10px; z-index: 4;">Batal / Tarik Uang Kembali</button>
+        </div>
+
+
+        <div class="area-kanan">
+
+            <div class="speech-bubble" id="pertanyaanKasir">
+                Halo! Mau beli apa hari ini? Coba pergi ke <strong>Rak Toko</strong> dulu ya!
+            </div>
+
+
+            <div class="kasir-wrapper"
+                style="position:relative; display:flex; flex-direction:column; align-items:center; width:85%;">
+
+                <div class="placeholder-character kasir" style="background: transparent; box-shadow: none;">
+
+                    <img src="aset%20student/8.png" alt="Kasir" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+
+
+                <div class="meja-kasir-coklat"
+                    style="width: 140%; height: 220px; background: linear-gradient(to bottom, #A0522D, #8B4513); border-top: 8px solid #CD853F; border-radius: 8px 8px 0 0; padding-top: 15px; padding-bottom: 20px; display: flex; justify-content: center; position: relative; z-index: 2; box-shadow: 0 -5px 15px rgba(0,0,0,0.3); margin-bottom: 10px;">
+
+
+                    <div class="placeholder-mesin"
+                        style="background: #BDC3C7; border: 4px solid #7F8C8D; border-radius: 10px; padding: 10px; width: 120px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; box-shadow: 0 5px 15px rgba(0,0,0,0.4); margin-top: -50px; z-index: 3;">
+                        <div
+                            style="background: #2C3E50; width: 90%; height: 35px; border-radius: 5px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; position: relative;">
+
+                            <div id="uangTerkumpulDisplay"
+                                style="font-weight: bold; color: #2ecc71; font-size: 1.2rem; font-family: monospace; letter-spacing: 2px;">
+                                0
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 80%;">
+                            <div style="background: #95A5A6; height: 10px; border-radius: 2px;"></div>
+                            <div style="background: #95A5A6; height: 10px; border-radius: 2px;"></div>
+                            <div style="background: #95A5A6; height: 10px; border-radius: 2px;"></div>
+                            <div style="background: #95A5A6; height: 10px; border-radius: 2px;"></div>
+                            <div style="background: #95A5A6; height: 10px; border-radius: 2px;"></div>
+                            <div style="background: #E74C3C; height: 10px; border-radius: 2px;"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <button id="btnBayar" class="btn-action bayar" style="display: none;">Serahkan Uang</button>
+            </div>
+    </main>
+
+
+    <section id="evaluasi-belanja" class="evaluasi-section" style="display: none;">
+        <div class="evaluasi-card">
+
+            <button id="btnTutupEvaluasi" class="btn-close-evaluasi" aria-label="Tutup Laporan"
+                title="Keluar">❌</button>
+
+
+            <div class="evaluasi-header">
+                <div class="logo-wrapper">
+                    <img src="../aset%20logo%20saku%20pintar.jpeg" alt="Saku Pintar">
+                </div>
+                <h1>Laporan Keuangan Misimu</h1>
+                <p>Waktu belanja sudah habis atau kamu telah menyelesaikannya. Mari kita cek pengeluaranmu!</p>
+            </div>
+
+
+            <div class="evaluasi-saldo-container">
+                <div class="saldo-box">
+                    <p>Saldo Awal</p>
+                    <h2 id="evalSaldoAwal">Rp 0</h2>
+                </div>
+                <div class="saldo-divider"></div>
+                <div class="saldo-box sisa-box">
+                    <p>Sisa Saldo</p>
+                    <h2 id="evalSisaSaldo">Rp 0</h2>
+                </div>
+            </div>
+
+
+            <h3 class="evaluasi-table-title">Daftar Pengeluaran</h3>
+            <div class="evaluasi-table-wrapper">
+                <table class="evaluasi-table">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nama Barang</th>
+                            <th>Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody id="evalTabelBody">
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="evaluasi-perencanaan">
+                <h3>Rencana Sisa Uang</h3>
+                <p>Kamu memiliki sisa uang sebesar <strong id="teksSisaUang">Rp 0</strong>. Apa rencanamu terhadap sisa
+                    uang tersebut?</p>
+                <textarea id="inputPerencanaan" rows="4" placeholder="Tulis rencana hebatmu di sini..."></textarea>
+                <button id="btnSimpanEvaluasi" class="btn-simpan-eval">Simpan</button>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="modal-rak" id="modalRak" style="display: none;">
+        <div class="modal-rak-content">
+            <div class="modal-rak-header">
+                <div>
+                    <h2 style="margin:0; font-size: 1.8rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">🏪 Etalase</h2>
+                    <p style="margin:5px 0 0 0; font-size: 1.1rem; color: #F1C40F; font-weight: bold;">Sisa Uang Sakumu:
+                        <span id="modalBudgetDisplay">Memuat...</span>
+                    </p>
+                </div>
+                <button class="btn-tutup-rak" id="btnTutupRak"
+                    style="display:none; font-size: 1.2rem; padding: 10px 20px;">❌ Tutup Rak</button>
+            </div>
+            <div class="modal-rak-body">
+                <div class="shop-tabs" id="shopTabsContainer">
+                    <div class="shop-tab active" data-shop="all">Semua Toko</div>
+                </div>
+                <div class="items-grid" id="rakBarangGrid">
+                    <p style="grid-column:1/-1; text-align:center; color:#7F8C8D;">Memuat data barang...</p>
+                </div>
+            </div>
+        </div>
+        <div
+            style="padding: 15px; text-align: center; background: transparent; align-self: flex-end; margin-bottom: 5vh;">
+            <img id="btnMulaiBermain" src="aset student/btn-play.png" alt="Mulai Game"
+                style="width: 250px; height: auto; cursor: pointer; transition: transform 0.2s; display: inline-block;"
+                onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"
+                onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1.08)'">
+        </div>
+    </div>
+    </div>
+
+
+    <div id="feedbackToast"
+        style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); padding:15px 30px; border-radius:30px; font-weight:bold; color:white; z-index:99999; box-shadow:0 4px 15px rgba(0,0,0,0.3); font-size:1.2rem;">
+        Pesan Feedback
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="../shared/js/firebase-db.js"></script>
+    <script src="../shared/js/presence-tracker.js"></script>
+    <script src="../shared/js/utils.js"></script>
+    <script src="js/kuis-belanja.js"></script>
+    </div>
+
+</body>
+
+</html>
