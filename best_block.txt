@@ -1,0 +1,86 @@
+
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-14T06:32:32Z sender=7e20230d-6b37-4018-8f6f-7a1233641d37/task-10463 priority=MESSAGE_PRIORITY_HIGH content=Task id "7e20230d-6b37-4018-8f6f-7a1233641d37/task-10463" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+> document.addEventListener('DOMContentLoaded', async () => {
+      // Override suara global dengan versi khusus kuis
+      if (window.audios) {
+         4. MODAL RAK TOKO
+         ========================================= */
+>     btnBukaRak.addEventListener('click', () => { modalRak.style.display = 'flex'; });
+>     btnTutupRak.addEventListener('click', () => { modalRak.style.display = 'none'; });
+  
+      function renderShopTabs() {
+          const tabs = shopTabsContainer.querySelectorAll('.shop-tab');
+          tabs.forEach(tab => {
+>             tab.addEventListener('click', (e) => {
+                  tabs.forEach(t => t.classList.remove('active'));
+                  e.target.classList.add('active');
+              const qtyDisplay = card.querySelector('.qty-display');
+  
+>             btnMin.addEventListener('click', (e) => {
+                  e.stopPropagation(); // Mencegah klik menembus ke card
+                  if(item.jumlahPilihan > 0) {
+              });
+  
+>             btnPlus.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  item.jumlahPilihan++;
+  
+      if (btnMulaiBermain) {
+>         btnMulaiBermain.addEventListener('click', () => {
+              // Ambil semua barang yang jumlahPilihannya > 0
+              keranjangPilihan = allItems.filter(item => item.jumlahPilihan > 0).map(item => ({...item, jumlah: 
+item.jumlahPilihan}));
+      const uangButtons = document.querySelectorAll('.uang-btn');
+      uangButtons.forEach(btn => {
+>         btn.addEventListener('click', (e) => {
+              if (!keranjangPilihan || keranjangPilihan.length === 0 || currentCheckoutIndex >= 
+keranjangPilihan.length) {
+                  showFeedback('Kamu belum memilih barang apapun untuk dibayar!', false);
+      });
+  
+>     btnResetUang.addEventListener('click', () => {
+          uangTerkumpul = 0;
+          updateCashierUI();
+      });
+  
+>     btnBayar.addEventListener('click', () => {
+          if (!keranjangPilihan || keranjangPilihan.length === 0 || currentCheckoutIndex >= keranjangPilihan.length) {
+              showFeedback('Belum ada barang atau semua barang sudah dibayar!', false);
+      }
+  
+>     window.addEventListener('resize', checkOrientation);
+      checkOrientation();
+  
+  
+      if(btnForceLandscape) {
+>         btnForceLandscape.addEventListener('click', forceLandscapeMode);
+      }
+  
+      }
+  
+>     btnSelesaiBelanja.addEventListener('click', () => {
+          Swal.fire({
+              title: 'Selesai Belanja?',
+      });
+  
+>     btnSimpanEvaluasi.addEventListener('click', async () => {
+          const rencana = inputPerencanaan.value.trim();
+          if (!rencana) {
+  
+      if (btnTutupEvaluasi) {
+>         btnTutupEvaluasi.addEventListener('click', () => {
+              Swal.fire({
+                  title: 'Keluar Laporan?',
+
+
+
+
+Log: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-10463.log
+</SYSTEM_MESSAGE>

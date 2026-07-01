@@ -1,0 +1,313 @@
+Created At: 2026-06-14T08:52:34Z
+Completed At: 2026-06-14T08:52:45Z
+The following changes were made by the replace_file_content tool to: d:\New folder (3)\student\js\kuis-belanja.js. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -806,8 +806,62 @@
+             const modalEvaluasi = document.getElementById('modalEvaluasi');
+             if (modalEvaluasi) modalEvaluasi.style.display = 'none';
+             
+-            // Pindah ke Halaman Evaluasi AI
+-            window.location.href = `evaluasi-ai.html?docId=${docRefId}`;
++            // Tampilkan popup persetujuan guru (Gatekeeper dipindah ke sini)
++            Swal.fire({
++                title: 'Telah Dikirim ke Guru!',
++                html: 'Laporan belanjamu sedang diperiksa oleh guru di Dashboard.<br><br><span id="statusIzinTextSwal" style="color:#E67E22; font-weight:bold; font-size:1.2rem;">⏳ Menunggu Izin...</span>',
++                icon: 'info',
++                showConfirmButton: true,
++                confirmButtonText: 'Lanjutkan ke Evaluasi AI',
++                confirmButtonColor: '#27AE60',
++                allowOutsideClick: false,
++                allowEscapeKey: false,
++                didOpen: () => {
++                    const confirmBtn = Swal.getConfirmButton();
++                    confirmBtn.disabled = true;
++                    confirmBtn.style.opacity = '0.5';
++                    confirmBtn.style.cursor = 'not-allowed';
++                    
++                    if (typeof db !== 'undefined' && docRefId) {
++                        // Dengarkan persetujuan guru secara real-time
++                        db.collection('perencanaan').doc(docRefId).onSnapshot((doc) => {
++                            if (doc.exists) {
++                                const data = doc.data();
++                                if (data.izinLanjut === true) {
++                                    const statusText = document.getElementById('statusIzinTextSwal');
++                                    if (statusText) {
++                                        statusText.innerHTML = '✅ Guru Telah Mengizinkan!';
++                                        statusText.style.color = '#27AE60';
++                                    }
++                                    
++                                    // Ubah icon Swal
++                                    const iconElement = Swal.getIcon();
++                                    if (iconElement) {
++                                        iconElement.className = 'swal2-icon swal2-success swal2-icon-show';
++                                        iconElement.innerHTML = '<div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div><span class="swal2-success-line-tip"></span><span class="swal2-success-line-long"></span><div class="swal2-success-ring"></div><div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div><div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>';
++                                    }
++
++                                    confirmBtn.disabled = false;
++                                    confirmBtn.style.opacity = '1';
++                                    confirmBtn.style.cursor = 'pointer';
++                                    
++                                    // Mainkan efek suara success jika ada
++                                    if (typeof playClickSound === 'function') playClickSound();
++                                }
++                            }
++                        });
++                    } else {
++                        // Fallback jika tidak ada internet/koneksi Firestore
++                        confirmBtn.disabled = false;
++                        confirmBtn.style.opacity = '1';
++                        confirmBtn.style.cursor = 'pointer';
++                    }
++                }
++            }).then((result) => {
++                if (result.isConfirmed) {
++                    window.location.href = `evaluasi-ai.html?docId=${docRefId}`;
++                }
++            });
+ 
+         } catch (error) {
+             console.error('Gagal menyimpan evaluasi:', error);
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+We did our best to apply changes despite some inaccuracies. Double check if the edit applied is what you intended.
+---
+Created At: 2026-06-15T18:55:32Z
+Completed At: 2026-06-15T18:55:32Z
+File Path: `file:///d:/New%20folder%20%283%29/student/js/kuis-belanja-v2.js`
+Total Lines: 934
+Total Bytes: 42775
+Showing lines 830 to 900
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+830:                 sisaSaldo: uangSaku,
+831:                 daftarBelanjaan: daftarBelanjaan,
+832:                 rencanaSisaUang: rencana
+833:             }));
+834: 
+835:             // Biarkan proses simpan berjalan di latar belakang (tanpa await) agar instan
+836:             Promise.all(savePromises).catch(e => console.error("Background save error:", e));
+837: 
+838:             // Sembunyikan modal evaluasi
+839:             const modalEvaluasi = document.getElementById('modalEvaluasi');
+840:             if (modalEvaluasi) modalEvaluasi.style.display = 'none';
+841:             
+842:             // Tampilkan popup persetujuan guru (Gatekeeper dipindah ke sini)
+843:             Swal.fire({
+844:                 title: 'Telah Dikirim ke Guru!',
+845:                 html: 'Laporan belanjamu sedang diperiksa oleh guru di Dashboard.<br><br><span id="statusIzinTextSwal" style="color:#E67E22; font-weight:bold; font-size:1.2rem;">⏳ Menunggu Izin...</span>',
+846:                 icon: 'info',
+847:                 showConfirmButton: true,
+848:                 confirmButtonText: 'Lanjutkan ke Evaluasi AI',
+849:                 confirmButtonColor: '#27AE60',
+850:                 allowOutsideClick: false,
+851:                 allowEscapeKey: false,
+852:                 didOpen: () => {
+853:                     const confirmBtn = Swal.getConfirmButton();
+854:                     confirmBtn.disabled = true;
+855:                     confirmBtn.style.opacity = '0.5';
+856:                     confirmBtn.style.cursor = 'not-allowed';
+857:                     
+858:                     if (typeof db !== 'undefined' && docRefId) {
+859:                         // Dengarkan persetujuan guru secara real-time
+860:                         db.collection('perencanaan').doc(docRefId).onSnapshot((doc) => {
+861:                             if (doc.exists) {
+862:                                 const data = doc.data();
+863:                                 if (data.izinLanjut === true) {
+864:                                     const statusText = document.getElementById('statusIzinTextSwal');
+865:                                     if (statusText) {
+866:                                         statusText.innerHTML = '✅ Guru Telah Mengizinkan!';
+867:                                         statusText.style.color = '#27AE60';
+868:                                     }
+869:                                     
+870:                                     // Ubah icon Swal
+871:                                     const iconElement = Swal.getIcon();
+872:                                     if (iconElement) {
+873:                                         iconElement.className = 'swal2-icon swal2-success swal2-icon-show';
+874:                                         iconElement.innerHTML = '<div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div><span class="swal2-success-line-tip"></span><span class="swal2-success-line-long"></span><div class="swal2-success-ring"></div><div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div><div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>';
+875:                                     }
+876: 
+877:                                     confirmBtn.disabled = false;
+878:                                     confirmBtn.style.opacity = '1';
+879:                                     confirmBtn.style.cursor = 'pointer';
+880:                                     
+881:                                     // Mainkan efek suara success jika ada
+882:                                     if (typeof playClickSound === 'function') playClickSound();
+883:                                 }
+884:                             }
+885:                         });
+886:                     } else {
+887:                         // Fallback jika tidak ada internet/koneksi Firestore
+888:                         confirmBtn.disabled = false;
+889:                         confirmBtn.style.opacity = '1';
+890:                         confirmBtn.style.cursor = 'pointer';
+891:                     }
+892:                 }
+893:             }).then((result) => {
+894:                 if (result.isConfirmed) {
+895:                     window.location.href = `evaluasi-ai.html?docId=${docRefId}`;
+896:                 }
+897:             });
+898: 
+899:         } catch (error) {
+900:             console.error('Gagal menyimpan evaluasi:', error);
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+Created At: 2026-06-15T18:56:49Z
+Completed At: 2026-06-15T18:56:50Z
+
+				The command completed successfully.
+				Output:
+				<truncated 57 lines>
+                                <div style="padding:15px; line-height:1.4; text-align:left;">
+                                    <div style="font-size:1.3rem; font-weight:900; color:#2C3E50; margin-bottom:8px;">${item.nama}</div>
+                                    <div style="font-size:1.2rem; color:#E74C3C; font-weight:800;">Rp ${item.subtotal.toLocaleString('id-ID')}</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+                rincianBarangHTML += '</div>';
+
+                // Rangkum catatan lengkap
+                const catatanFormatted = `
+                    <div style="font-size:1.2rem; line-height:1.5;">
+                        <strong style="font-size:1.3rem; color:#34495E;">dY>' Total Belanja (${jumlahBarang} Barang):</strong> <span style="font-weight:900; color:#2C3E50;">Rp ${totalBelanja.toLocaleString('id-ID')}</span>
+                        ${rincianBarangHTML}
+                        <hr style="margin:12px 0; border:0; border-top:2px dashed #bdc3c7;">
+                        <strong>Modal Awal:</strong> Rp ${saldoAwal.toLocaleString('id-ID')}<br>
+                        <strong>Sisa Saldo Akhir:</strong> <span style="color:${uangSaku >= 0 ? '#27AE60' : '#E74C3C'}; font-weight:900; font-size:1.3rem;">Rp ${uangSaku.toLocaleString('id-ID')}</span><br>
+                        <strong>Status:</strong> <span style="font-weight:bold; background:${uangSaku >= 0 ? '#d5f5e3' : '#fadbd8'}; padding:2px 8px; border-radius:6px; color:${uangSaku >= 0 ? '#1e8449' : '#c0392b'};">${status}</span><br>
+                        <div style="background:#e8f4f8; padding:12px 15px; border-radius:8px; margin-top:12px; border-left:5px solid #3498DB; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+                            <strong style="color:#2980B9; font-size:1.15rem;">dY'� Rencana Penggunaan Sisa Uang:</strong><br>
+                            <i style="color:#34495E; font-size:1.1rem;">"${rencana}"</i>
+                        </div>
+                    </div>
+                `;
+
+                const p2 = saveStudentResult({
+                    nama: parsedAuth.nama,
+                    kelas: parsedAuth.kelas,
+                    aktivitas: "Mini-Game Belanja",
+                    skorAkhir: `Rp ${uangSaku}`,
+                    catatan: catatanFormatted
+                });
+                savePromises.push(p2);
+            }
+
+            // Simpan ke Session Storage sebagai backup instan untuk AI Evaluasi
+            sessionStorage.setItem('tempEvaluasiData', JSON.stringify({
+                saldoAwal: saldoAwal,
+                sisaSaldo: uangSaku,
+                daftarBelanjaan: daftarBelanjaan,
+                rencanaSisaUang: rencana
+            }));
+
+            // Biarkan proses simpan berjalan di latar belakang (tanpa await) agar instan
+            Promise.all(savePromises).catch(e => console.error("Background save error:", e));
+
+            // Sembunyikan modal evaluasi
+            const modalEvaluasi = document.getElementById('modalEvaluasi');
+            if (modalEvaluasi) modalEvaluasi.style.display = 'none';
+            
+            // Tampilkan popup persetujuan guru (Gatekeeper dipindah ke sini)
+            Swal.fire({
+                title: 'Telah Dikirim ke Guru!',
+                html: 'Laporan belanjamu sedang diperiksa oleh guru di Dashboard.<br><br><span id="statusIzinTextSwal" style="color:#E67E22; font-weight:bold; font-size:1.2rem;">�?3 Menunggu Izin...</span>',
+                icon: 'info',
+                showConfirmButton: true,
+                confirmButtonText: 'Lanjutkan ke Evaluasi AI',
+                confirmButtonColor: '#27AE60',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                didOpen: () => {
+                    const confirmBtn = Swal.getConfirmButton();
+                    confirmBtn.disabled = true;
+                    confirmBtn.style.opacity = '0.5';
+                    confirmBtn.style.cursor = 'not-allowed';
+                    
+                    if (typeof db !== 'undefined' && docRefId) {
+                        // Dengarkan persetujuan guru secara real-time
+                        db.collection('perencanaan').doc(docRefId).onSnapshot((doc) => {
+                            if (doc.exists) {
+                                const data = doc.data();
+                                if (data.izinLanjut === true) {
+                                    const statusText = document.getElementById('statusIzinTextSwal');
+                                    if (statusText) {
+                                        statusText.innerHTML = '�o. Guru Telah Mengizinkan!';
+                                        statusText.style.color = '#27AE60';
+                                    }
+                                    
+                                    // Ubah icon Swal
+                                    const iconElement = Swal.getIcon();
+                                    if (iconElement) {
+                                        iconElement.className = 'swal2-icon swal2-success swal2-icon-show';
+                                        iconElement.innerHTML = '<div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div><span class="swal2-success-line-tip"></span><span class="swal2-success-line-long"></span><div class="swal2-success-ring"></div><div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div><div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>';
+                                    }
+
+                                    confirmBtn.disabled = false;
+                                    confirmBtn.style.opacity = '1';
+                                    confirmBtn.style.cursor = 'pointer';
+                                    
+                                    // Mainkan efek suara success jika ada
+                                    if (typeof playClickSound === 'function') playClickSound();
+                                }
+                            }
+                        });
+                    } else {
+                        // Fallback jika tidak ada internet/koneksi Firestore
+                        confirmBtn.disabled = false;
+                        confirmBtn.style.opacity = '1';
+                        confirmBtn.style.cursor = 'pointer';
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `evaluasi-ai.html?docId=${docRefId}`;
+                }
+            });
+
+        } catch (error) {
+            console.error('Gagal menyimpan evaluasi:', error);
+            Swal.fire({
+                title: 'Gagal Menyimpan',
+                text: 'Gagal menyimpan data. Pastikan koneksi internetmu aktif!',
+                icon: 'error',
+                confirmButtonColor: '#E74C3C'
+            });
+            btnSimpanEvaluasi.disabled = false;
+            btnSimpanEvaluasi.textContent = 'dY'_ Simpan ke Buku Tabungan';
+        }
+    });
+
+    if (btnTutupEvaluasi) {
+        btnTutupEvaluasi.addEventListener('click', () => {
+            Swal.fire({
+                title: 'Keluar Laporan?',
+                text: 'Yakin ingin keluar dari laporan? Rencana sisa uangmu mungkin belum tersimpan.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#E74C3C',
+                cancelButtonColor: '#95A5A6',
+                confirmButtonText: 'Ya, Keluar',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    }
+
+    // Panggil inisialisasi
+    initData();
+});
+
+
+---
+Created At: 2026-06-15T20:00:57Z
+Tool is running as a background task with task id: 7e20230d-6b37-4018-8f6f-7a1233641d37/task-12326
+Task Description: node -e "const fs=require('fs'); const lines=fs.readFileSync('C:\\\\Users\\\\ACER\\\\.gemini\\\\antigravity\\\\brain\\\\7e20230d-6b37-4018-8f6f-7a1233641d37\\\\.system_generated\\\\logs\\\\transcript_full.jsonl','utf8').split('\n'); let res=''; for(let line of lines) { if(!line)continue; try { const obj=JSON.parse(line); if(obj.content && obj.content.includes('persetujuan') && obj.content.includes('evaluasi-ai.html')) { res += obj.content + '\n---\n'; } } catch(e){} } fs.writeFileSync('approval_logic.txt', res);"
+Task logs are available at: file:///C:/Users/ACER/.gemini/antigravity/brain/7e20230d-6b37-4018-8f6f-7a1233641d37/.system_generated/tasks/task-12326.log
+---
